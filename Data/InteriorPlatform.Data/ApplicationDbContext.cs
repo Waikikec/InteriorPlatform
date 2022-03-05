@@ -24,7 +24,21 @@
         {
         }
 
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<Position> Positions { get; set; }
+
+        public DbSet<Project> Projects { get; set; }
+
+        public DbSet<ProjectUser> ProjectUsers { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Town> Towns { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

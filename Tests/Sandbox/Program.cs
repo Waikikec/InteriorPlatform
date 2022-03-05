@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using InteriorPlatform.Data;
     using InteriorPlatform.Data.Common;
     using InteriorPlatform.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using InteriorPlatform.Data.Seeding;
     using InteriorPlatform.Services.Data;
     using InteriorPlatform.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

@@ -1,9 +1,8 @@
 ﻿namespace InteriorPlatform.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {
