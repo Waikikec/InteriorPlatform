@@ -47,12 +47,13 @@
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [EmailAddress]
             [Display(Name = "Имейл")]
+            [StringLength(100, ErrorMessage = "Полето '{0}' трябва да бъде валиден.", MinimumLength = 6)]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [StringLength(100, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
@@ -60,38 +61,41 @@
 
             [DataType(DataType.Password)]
             [Display(Name = "Потвърди паролата")]
-            [Compare("Password", ErrorMessage = "Паролата и потвърди паролата не съвпадат")]
+            [Compare("Password", ErrorMessage = "Паролата не съвпада")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Име")]
             [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
             public string FirstName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Фамилия")]
             [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
             public string LastName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Фирма")]
             [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
             public string Company { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Длъжност")]
             [Range(1, 10, ErrorMessage = "Избери длъжност")]
             public int PositionId { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Град")]
             [Range(1, 10, ErrorMessage = "Избери град")]
             public int TownId { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
             [Display(Name = "Телефон")]
             [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
             public string PhoneNumber { get; set; }
+
+            [Required(ErrorMessage = "Полето '{0}' е задължително.")]
+            public bool Checkbox { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
