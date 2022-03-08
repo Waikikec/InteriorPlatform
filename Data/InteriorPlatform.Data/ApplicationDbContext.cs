@@ -34,7 +34,7 @@
 
         public DbSet<Project> Projects { get; set; }
 
-        public DbSet<ProjectUser> ProjectUsers { get; set; }
+        public DbSet<UserProject> UserProjects { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 

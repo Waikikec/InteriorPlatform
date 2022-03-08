@@ -17,14 +17,20 @@ namespace InteriorPlatform.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
-            this.ProjectUsers = new HashSet<ProjectUser>();
+            this.UserProjects = new HashSet<UserProject>();
         }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public int ProjectsCount => this.ProjectUsers.Count;
+        public int ProjectsCount => this.UserProjects.Count;
+
+        // Relationships
+        [ForeignKey(nameof(Town))]
+        public int TownId { get; set; }
+
+        public Town Town { get; set; }
 
         [ForeignKey(nameof(Position))]
         public int PositionId { get; set; }
@@ -53,6 +59,6 @@ namespace InteriorPlatform.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
+        public virtual ICollection<UserProject> UserProjects { get; set; }
     }
 }

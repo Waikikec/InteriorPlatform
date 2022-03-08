@@ -1,0 +1,122 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div class="col-md-5">
+            <h4>Създайте своя профил като професионалист в платформата.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label asp-for="Input.Company"></label>
+                <input asp-for="Input.Company" class="form-control" />
+                <span asp-validation-for="Input.Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.TownId"></label>
+                <select asp-for="Input.TownId" class="selectpicker" data-style="select-with-transition" title="Избери град" data-size="7" tabindex="-98">
+                    <option value="1">София</option>
+                    <option value="2">Стара Загора</option>
+                    <option value="3">Варна</option>
+                    <option value="4">Пловдив</option>
+                    <option value="5">Плевен</option>
+                    <option value="6">Велико Търново</option>
+                    <option value="7">Бургас</option>
+                    <option value="8">Благоевград</option>
+                    <option value="9">Петрич</option>
+                    <option value="10">Нова Загора</option>
+                </select>
+                <span asp-validation-for="Input.TownId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PositionId"></label>
+                <select asp-for="Input.PositionId" class="selectpicker" data-style="select-with-transition" title="Избери позиция" data-size="7" tabindex="-98">
+                    <option value="1">Архитект</option>
+                    <option value="2">Ландшафт</option>
+                    <option value="3">Интериорен дизайнер</option>
+                    <option value="4">Продуктов дизайнер</option>
+                    <option value="5">3Д Дизайнер</option>
+                    <option value="6">Проектант</option>
+                    <option value="7">Производител</option>
+                    <option value="8">Студио</option>
+                    <option value="9">Търговец</option>
+                    <option value="10">Дистрибутор</option>
+                </select>
+                <span asp-validation-for="Input.PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <p>Съгласявам се с Общите условия и Политиката за сигурност</p>
+        </div>
+
+    </form>
+
+    @*        <section>
+        <h4>Use another service to register.</h4>
+        <hr />
+        @{
+        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+        {
+        <div>
+        <p>
+        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+        for details on setting up this ASP.NET application to support logging in via external services.
+        </p>
+        </div>
+        }
+        else
+        {
+        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <div>
+        <p>
+        @foreach (var provider in Model.ExternalLogins)
+        {
+        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+        }
+        </p>
+        </div>
+        </form>
+        }
+        }
+        </section>*@
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

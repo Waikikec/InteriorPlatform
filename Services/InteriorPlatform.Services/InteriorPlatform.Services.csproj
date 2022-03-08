@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Web\InteriorPlatform.Web.ViewModels\InteriorPlatform.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

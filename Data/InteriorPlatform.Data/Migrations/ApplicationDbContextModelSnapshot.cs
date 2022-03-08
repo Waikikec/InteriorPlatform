@@ -16,7 +16,7 @@ namespace InteriorPlatform.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.ApplicationRole", b =>
@@ -132,6 +132,9 @@ namespace InteriorPlatform.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TownId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -156,6 +159,8 @@ namespace InteriorPlatform.Data.Migrations
                     b.HasIndex("PositionId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("TownId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -304,10 +309,13 @@ namespace InteriorPlatform.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAwarded")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsFavourite")
+                    b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRealized")
@@ -338,26 +346,6 @@ namespace InteriorPlatform.Data.Migrations
                     b.HasIndex("TownId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("InteriorPlatform.Data.Models.ProjectUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ProjectUsers");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Setting", b =>
@@ -419,6 +407,26 @@ namespace InteriorPlatform.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Towns");
+                });
+
+            modelBuilder.Entity("InteriorPlatform.Data.Models.UserProject", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserProjects");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -540,12 +548,20 @@ namespace InteriorPlatform.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("InteriorPlatform.Data.Models.Project", null)
-                        .WithMany("Users")
+                        .WithMany("Favourites")
                         .HasForeignKey("ProjectId");
+
+                    b.HasOne("InteriorPlatform.Data.Models.Town", "Town")
+                        .WithMany()
+                        .HasForeignKey("TownId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Company");
 
                     b.Navigation("Position");
+
+                    b.Navigation("Town");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Image", b =>
@@ -598,7 +614,7 @@ namespace InteriorPlatform.Data.Migrations
                     b.Navigation("Town");
                 });
 
-            modelBuilder.Entity("InteriorPlatform.Data.Models.ProjectUser", b =>
+            modelBuilder.Entity("InteriorPlatform.Data.Models.UserProject", b =>
                 {
                     b.HasOne("InteriorPlatform.Data.Models.Project", "Project")
                         .WithMany()
@@ -607,7 +623,7 @@ namespace InteriorPlatform.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("InteriorPlatform.Data.Models.ApplicationUser", "User")
-                        .WithMany("ProjectUsers")
+                        .WithMany("UserProjects")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Project");
@@ -672,9 +688,9 @@ namespace InteriorPlatform.Data.Migrations
 
                     b.Navigation("Logins");
 
-                    b.Navigation("ProjectUsers");
-
                     b.Navigation("Roles");
+
+                    b.Navigation("UserProjects");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Category", b =>
@@ -691,9 +707,9 @@ namespace InteriorPlatform.Data.Migrations
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Project", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("Favourites");
 
-                    b.Navigation("Users");
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Town", b =>

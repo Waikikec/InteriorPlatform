@@ -1,0 +1,54 @@
+﻿@model InteriorPlatform.Web.ViewModels.Project.CreateProjectInputModel
+@{
+    this.ViewData["Title"] = "Add new project";
+}
+
+
+<form method="post" class="row" enctype="multipart/form-data">
+    <div class="row g-md-2">
+        <h1>Добави проект:</h1>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="col-md-6">
+            <label asp-for="Name" class="form-label">Име на проекта:</label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="CategoryId" class="form-label">Категория:</label>
+            <input asp-for="CategoryId" type="text" class="form-control" />
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="IsRealized" class="form-label">Етап на проекта:</label>
+            <select asp-for="IsRealized" type="text" class="form-select">
+                <option selected>Избери...</option>
+                <option>Реализиран проект</option>
+                <option>3D концептуален проект</option>
+            </select>
+            <span asp-validation-for="IsRealized" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="IsPublic" class="form-label">Статус на проекта:</label>
+            <select asp-for="IsPublic" type="text" class="form-select">
+                <option selected>Избери...</option>
+                <option>Публичен</option>
+                <option>Скрит</option>
+            </select>
+            <span asp-validation-for="IsPublic" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Description" class="form-label">Описание:</label>
+            <textarea placeholder="Моля опишете кратко вашия проект"
+                      type="text"
+                      style="height: 100px"
+                      asp-for="Description"
+                      class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger" />
+        </div>
+        <div class="input-group mb-3">
+            <label asp-for="Images" class="input-group-text">Снимки</label>
+            <input asp-for="Images" type="file" class="form-control" />
+            <span asp-validation-for="Images" class="text-danger" />
+        </div>
+    </div>
+</form>

@@ -42,15 +42,13 @@
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.Configure<CookiePolicyOptions>(
-                options =>
+            services.Configure<CookiePolicyOptions>(options =>
                     {
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
 
-            services.AddControllersWithViews(
-                options =>
+            services.AddControllersWithViews(options =>
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
@@ -102,8 +100,7 @@
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(
-                endpoints =>
+            app.UseEndpoints(endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

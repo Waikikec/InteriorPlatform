@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\InteriorPlatform.Data.Common\InteriorPlatform.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\InteriorPlatform.Data.Models\InteriorPlatform.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\InteriorPlatform.Web.ViewModels\InteriorPlatform.Web.ViewModels.csproj" />
     <ProjectReference Include="..\InteriorPlatform.Services.Mapping\InteriorPlatform.Services.Mapping.csproj" />
   </ItemGroup>
 

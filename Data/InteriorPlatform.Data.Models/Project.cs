@@ -9,7 +9,7 @@
     {
         public Project()
         {
-            this.Users = new HashSet<ApplicationUser>();
+            this.Favourites = new HashSet<ApplicationUser>();
             this.Images = new HashSet<Image>();
         }
 
@@ -21,12 +21,15 @@
 
         public bool IsRealized { get; set; }
 
-        public bool IsFavourite { get; set; }
+        public bool IsPublic { get; set; }
+
+        public bool IsAwarded { get; set; }
 
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
 
+        // Relationships
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
@@ -42,7 +45,8 @@
 
         public virtual Company Company { get; set; }
 
-        public virtual ICollection<ApplicationUser> Users { get; set; }
+        // Collections
+        public virtual ICollection<ApplicationUser> Favourites { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
     }
