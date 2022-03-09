@@ -1,54 +1,108 @@
 ﻿@model InteriorPlatform.Web.ViewModels.Project.CreateProjectInputModel
 @{
-    this.ViewData["Title"] = "Add new project";
+    this.ViewData["Title"] = "Добави проект";
+    var styleItems = this.Model.StylesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
+<div class="row">
+    <form method="post" class="row" enctype="multipart/form-data">
+        <h3 class="card-title">Добави проект:</h3>
+        <hr />
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Име на проекта</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span class="form-control-feedback">
+                    <i class="material-icons">done</i>
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsRealized" class="form-label">Етап на проекта:</label>
+                <div class="radio">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios">
+                            Реализиран проект
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios">
+                            3Д Концептуален Проект
+                        </label>
+                    </div>
+                    <span asp-validation-for="IsRealized" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsPublic" class="form-label">Статус на проекта:</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios">
+                        Публичен
+                    </label>
+                    <label>
+                        <input type="radio" name="optionsRadios">
+                        Скрит
+                    </label>
+                </div>
+                <span asp-validation-for="IsPublic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="form-label">Описание:</label>
+                <textarea asp-for="Description"
+                          class="form-control"
+                          placeholder="моля добавете кратък текст"
+                          rows="7"></textarea>
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+        </div>
+        <div class="col-md-6">
+@*            <div class="form-group">
+                <label asp-for="Budget" class="form-label">Бюджет</label>
+                <input asp-for="Budget" type="text" class="form-control">
+                <span class="form-control-feedback">
+                    <i class="material-icons">done</i>
+                </span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="StyleId" class="form-label">Стилове</label>
+                <select asp-for="StyleId" asp-items="styleItems" class="selectpicker" data-style="select-with-transition" multiple="" title="Избери стил" data-size="7" tabindex="-98"></select>
+                <span asp-validation-for="StyleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="form-label">Категория</label>
+                <select asp-for="CategoryId" asp-items="categoryItems" class="selectpicker" data-style="select-with-transition" title="Избери категория" data-size="7" tabindex="-98"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <div class="fileinput fileinput-new justify-content-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised">
+                        <img src="~/assets/img/image_placeholder.jpg" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-default btn-file">
+                            <span class="fileinput-new">Добави снимка</span>
+                            <span class="fileinput-exists">Смени</span>
+                            <input type="file" name="..." />
+                        </span>
+                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                            <i class="fa fa-times"></i> Премахни
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Създай</button>
+    </form>
+
+    <h3>Инструкции:</h3>
+    <hr />
+    <p class="card-description">Позицията на снимките се променят посредством влачене (drag and drop)</p>
+    <p class="card-description">Дължината на снимката не трябва да надвишава 1920px</p>
+    <p class="card-description">Не качвайте повече от 10 снимки наведнъж</p>
+    <p class="card-description">Размерът на снимката не трябва да надвишава 3 MB</p>
+</div>
 
 
-<form method="post" class="row" enctype="multipart/form-data">
-    <div class="row g-md-2">
-        <h1>Добави проект:</h1>
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="col-md-6">
-            <label asp-for="Name" class="form-label">Име на проекта:</label>
-            <input asp-for="Name" type="text" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="col-md-6">
-            <label asp-for="CategoryId" class="form-label">Категория:</label>
-            <input asp-for="CategoryId" type="text" class="form-control" />
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
-        </div>
-        <div class="col-md-6">
-            <label asp-for="IsRealized" class="form-label">Етап на проекта:</label>
-            <select asp-for="IsRealized" type="text" class="form-select">
-                <option selected>Избери...</option>
-                <option>Реализиран проект</option>
-                <option>3D концептуален проект</option>
-            </select>
-            <span asp-validation-for="IsRealized" class="text-danger"></span>
-        </div>
-        <div class="col-md-6">
-            <label asp-for="IsPublic" class="form-label">Статус на проекта:</label>
-            <select asp-for="IsPublic" type="text" class="form-select">
-                <option selected>Избери...</option>
-                <option>Публичен</option>
-                <option>Скрит</option>
-            </select>
-            <span asp-validation-for="IsPublic" class="text-danger"></span>
-        </div>
-        <div class="col-md-6">
-            <label asp-for="Description" class="form-label">Описание:</label>
-            <textarea placeholder="Моля опишете кратко вашия проект"
-                      type="text"
-                      style="height: 100px"
-                      asp-for="Description"
-                      class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger" />
-        </div>
-        <div class="input-group mb-3">
-            <label asp-for="Images" class="input-group-text">Снимки</label>
-            <input asp-for="Images" type="file" class="form-control" />
-            <span asp-validation-for="Images" class="text-danger" />
-        </div>
-    </div>
-</form>
+

@@ -11,6 +11,7 @@
         {
             this.Favourites = new HashSet<ApplicationUser>();
             this.Images = new HashSet<Image>();
+            this.Styles = new HashSet<Style>();
         }
 
         public string Name { get; set; }
@@ -49,5 +50,7 @@
         public virtual ICollection<ApplicationUser> Favourites { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
+
+        public virtual ICollection<Style> Styles { get; set; }
     }
 }

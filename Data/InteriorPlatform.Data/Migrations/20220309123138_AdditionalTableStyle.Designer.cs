@@ -4,14 +4,16 @@ using InteriorPlatform.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InteriorPlatform.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220309123138_AdditionalTableStyle")]
+    partial class AdditionalTableStyle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -327,6 +329,9 @@ namespace InteriorPlatform.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("StyleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TownId")
                         .HasColumnType("int");
 
@@ -342,6 +347,8 @@ namespace InteriorPlatform.Data.Migrations
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("StyleId");
 
                     b.HasIndex("TownId");
 
@@ -562,21 +569,6 @@ namespace InteriorPlatform.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ProjectStyle", b =>
-                {
-                    b.Property<int>("ProjectsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StylesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectsId", "StylesId");
-
-                    b.HasIndex("StylesId");
-
-                    b.ToTable("ProjectStyle");
-                });
-
             modelBuilder.Entity("InteriorPlatform.Data.Models.ApplicationUser", b =>
                 {
                     b.HasOne("InteriorPlatform.Data.Models.Company", "Company")
@@ -642,6 +634,10 @@ namespace InteriorPlatform.Data.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("InteriorPlatform.Data.Models.Style", null)
+                        .WithMany("Projects")
+                        .HasForeignKey("StyleId");
 
                     b.HasOne("InteriorPlatform.Data.Models.Town", "Town")
                         .WithMany("Projects")
@@ -726,21 +722,6 @@ namespace InteriorPlatform.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectStyle", b =>
-                {
-                    b.HasOne("InteriorPlatform.Data.Models.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectsId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("InteriorPlatform.Data.Models.Style", null)
-                        .WithMany()
-                        .HasForeignKey("StylesId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("InteriorPlatform.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
@@ -769,6 +750,11 @@ namespace InteriorPlatform.Data.Migrations
                     b.Navigation("Favourites");
 
                     b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("InteriorPlatform.Data.Models.Style", b =>
+                {
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Town", b =>

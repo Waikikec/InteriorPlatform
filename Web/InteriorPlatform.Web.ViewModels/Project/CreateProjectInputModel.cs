@@ -11,18 +11,21 @@
         public string Name { get; set; }
 
         [Required]
-        public int CategoryId { get; set; }
-
-        [Required]
-        // [Display(Name = "Етап на проекта")]
         public bool IsRealized { get; set; }
 
         [Required]
-        // [Display(Name = "Статус на проекта")]
         public bool IsPublic { get; set; }
 
         [Required]
         public string Description { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
+
+        public int StyleId { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> StylesItems { get; set; }
 
         public IEnumerable<IFormFile> Images { get; set; }
     }

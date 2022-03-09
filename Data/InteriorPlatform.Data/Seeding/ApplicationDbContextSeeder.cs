@@ -29,6 +29,8 @@
                               new SettingsSeeder(),
                               new CitiesSeeder(),
                               new PositionsSeeder(),
+                              new CategoriesSeeder(),
+                              new StylesSeeder(),
                           };
 
             foreach (var seeder in seeders)

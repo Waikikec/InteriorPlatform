@@ -38,6 +38,8 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Style> Styles { get; set; }
+
         public DbSet<Town> Towns { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
