@@ -1,6 +1,7 @@
 ﻿namespace InteriorPlatform.Services.Data
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using InteriorPlatform.Data.Common.Repositories;
     using InteriorPlatform.Data.Models;
@@ -9,26 +10,34 @@
     public class ProjectsService : IProjectsService
     {
         private readonly IDeletableEntityRepository<Project> projectRepository;
+        private readonly IDeletableEntityRepository<Style> styleRepository;
 
         public ProjectsService(
-            IDeletableEntityRepository<Project> projectRepository)
+            IDeletableEntityRepository<Project> projectRepository,
+            IDeletableEntityRepository<Style> styleRepository)
         {
             this.projectRepository = projectRepository;
+            this.styleRepository = styleRepository;
         }
 
-        public Task CreateAsync(CreateProjectInputModel model, string userId, string imagePath)
+        public async Task CreateAsync(CreateProjectInputModel model, string userId, string imagePath)
         {
-            //var project = new Project
-            //{
-            //    Name = model.Name,
-            //    Description = model.Description,
-            //    IsRealized = model.IsRealized,
-            //    IsPublic = model.IsPublic,                
-            //    CategoryId = model.CategoryId,
+            var project = new Project
+            {
+                Name = model.Name,
+                IsRealized = model.IsRealized,
+                IsPublic = model.IsPublic,
+                Description = model.Description,
+                CategoryId = model.CategoryId,
+                AddedByUserId = userId,
+            };
 
-            //    AddedByUserId = userId,
-            //}
-            return null;
+            foreach (var style in model.Styles)
+            {
+                project.Styles.Add(style);
+            }
+
+            return;
         }
     }
 }

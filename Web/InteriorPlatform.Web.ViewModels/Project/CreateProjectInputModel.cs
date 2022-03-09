@@ -7,23 +7,28 @@
 
     public class CreateProjectInputModel
     {
-        [Required]
+        [Required(ErrorMessage = "Полето '{0}' е задължително.")]
+        [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
         public string Name { get; set; }
 
-        [Required]
+        //[Required(ErrorMessage = "Полето '{0}' е задължително.")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.")]
         public bool IsRealized { get; set; }
 
-        [Required]
+        //[Required(ErrorMessage = "Полето '{0}' е задължително.")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.")]
         public bool IsPublic { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето '{0}' е задължително.")]
+        [StringLength(30, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 3)]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Полето '{0}' е задължително.")]
         public int CategoryId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
-        public int StyleId { get; set; }
+        public IEnumerable<string> Styles { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> StylesItems { get; set; }
 
