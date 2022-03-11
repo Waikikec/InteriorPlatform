@@ -13,35 +13,31 @@
             <div class="form-group">
                 <label asp-for="Name" class="form-label">Име на проекта</label>
                 <input asp-for="Name" type="text" class="form-control">
-                <span class="form-control-feedback">
-                    <i class="material-icons">done</i>
-                </span>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsRealized" class="form-label">Етап на проекта:</label>
                 <div class="radio">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios">
-                            Реализиран проект
-                        </label>
-                        <label>
-                            <input type="radio" name="optionsRadios">
-                            3Д Концептуален Проект
-                        </label>
-                    </div>
-                    <span asp-validation-for="IsRealized" class="text-danger"></span>
+                    <label>
+                        <input asp-for="IsRealized" type="radio" value="true" name="IsRealized">
+                        Реализиран проект
+                    </label>
+                    <label>
+                        <input asp-for="IsRealized" type="radio" value="false" name="IsRealized">
+                        3Д Концептуален Проект
+                    </label>
                 </div>
+                <span asp-validation-for="IsRealized" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsPublic" class="form-label">Статус на проекта:</label>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="optionsRadios">
+                        <input asp-for="IsPublic" type="radio" name="IsPublic" value="true">
                         Публичен
                     </label>
                     <label>
-                        <input type="radio" name="optionsRadios">
+                        <input asp-for="IsPublic" type="radio" name="IsPublic" value="false">
                         Скрит
                     </label>
                 </div>
@@ -57,13 +53,6 @@
             </div>
         </div>
         <div class="col-md-6">
-@*            <div class="form-group">
-                <label asp-for="Budget" class="form-label">Бюджет</label>
-                <input asp-for="Budget" type="text" class="form-control">
-                <span class="form-control-feedback">
-                    <i class="material-icons">done</i>
-                </span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Styles" class="form-label">Стилове</label>
                 <select asp-for="Styles" asp-items="styleItems" class="selectpicker" data-style="select-with-transition" multiple="" title="Избери стил" data-size="7" tabindex="-98"></select>
@@ -74,24 +63,31 @@
                 <select asp-for="CategoryId" asp-items="categoryItems" class="selectpicker" data-style="select-with-transition" title="Избери категория" data-size="7" tabindex="-98"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
+                <label asp-for="Images"></label>
+                <input asp-for="Images" class="form-control" />
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            @*<div class="form-group text-center">
                 <div class="fileinput fileinput-new justify-content-center" data-provides="fileinput">
                     <div class="fileinput-new thumbnail img-raised">
-                        <img src="~/assets/img/image_placeholder.jpg" alt="...">
+                        <img src="~/assets/img/image_placeholder.jpg" alt="Images">
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                     <div>
+                        <label asp-for="Images">Снимки</label>
                         <span class="btn btn-raised btn-round btn-default btn-file">
                             <span class="fileinput-new">Добави снимка</span>
                             <span class="fileinput-exists">Смени</span>
-                            <input type="file" name="..." />
+                            <input asp-for="Images" type="file" name="Images" />
                         </span>
+                        <span asp-validation-for="Images" class="text-danger"></span>
                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
                             <i class="fa fa-times"></i> Премахни
                         </a>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
         <button type="submit" class="btn btn-primary">Създай</button>
     </form>
