@@ -11,5 +11,7 @@
         Task CreateAsync(CreateProjectInputModel input, ApplicationUser user, string imagePath);
 
         IEnumerable<T> GetAll<T>();
+
+        T GetById<T>(int id);
     }
 }

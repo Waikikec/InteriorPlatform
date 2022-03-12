@@ -1,0 +1,38 @@
+﻿@model InteriorPlatform.Web.ViewModels.Project.ByIdProjectViewModel
+@{
+    this.ViewData["Title"] = Model.Id;
+}
+
+<div class="row m-4">
+    <div class="col-lg-8 g-mb-30 g-mb-0--lg">
+        @foreach (var image in Model.Images)
+        {
+            <div class="col-lg-6">
+                <img class="img-rounded img-responsive img-raised" src="~/images/projects/@image.Id.@image.Extension" />
+            </div>
+            <div class="col-sm-6">
+                <img class="img-rounded img-responsive img-raised" src="~/images/projects/@image.Id.@image.Extension" />
+            </div>
+        }
+    </div>
+    <div class="col-lg-3">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a href="#pablo">
+                    <img class="img" src="~/assets/img/faces/marc.jpg" />
+                </a>
+            </div>
+
+            <div class="card-content">
+                <h6 class="category text-gray">CEO / Co-Founder</h6>
+
+                <h4 class="card-title">Alec Thompson</h4>
+
+                <p class="card-description">
+                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                </p>
+                <a href="#pablo" class="btn btn-info btn-round">Follow</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -81,5 +81,16 @@
 
             return projects;
         }
+
+        public T GetById<T>(int id)
+        {
+            var recipe = this.projectsRepository
+                .AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return recipe;
+        }
     }
 }

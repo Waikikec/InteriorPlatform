@@ -35,7 +35,7 @@
 
         public IActionResult All()
         {
-            //if(IdentityBuilder <= 0)
+            //if(id <= 0)
             //{
             //    return this.NotFound();
             //}
@@ -46,6 +46,12 @@
             };
 
             return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var project = this.projectsService.GetById<ByIdProjectViewModel>(id);
+            return this.View(project);
         }
 
         [Authorize]
