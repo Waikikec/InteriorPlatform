@@ -33,6 +33,21 @@
             this.userManager = userManager;
         }
 
+        public IActionResult All()
+        {
+            //if(IdentityBuilder <= 0)
+            //{
+            //    return this.NotFound();
+            //}
+
+            var viewModel = new AllProjectsViewModel
+            {
+                Projects = this.projectsService.GetAll<SingleProjectViewModel>(),
+            };
+
+            return this.View(viewModel);
+        }
+
         [Authorize]
         public IActionResult Create()
         {
@@ -59,7 +74,7 @@
 
             try
             {
-                await this.projectsService.CreateAsync(model, user.Id, $"{this.environment.WebRootPath}");
+                await this.projectsService.CreateAsync(model, user, $"{this.environment.WebRootPath}");
             }
             catch (Exception ex)
             {

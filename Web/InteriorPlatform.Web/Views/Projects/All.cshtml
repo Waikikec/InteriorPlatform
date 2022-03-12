@@ -1,0 +1,36 @@
+﻿@model InteriorPlatform.Web.ViewModels.Project.AllProjectsViewModel
+@{
+    this.ViewData["Title"] = "All Projects";
+}
+
+<h3 class="card-title">Всички проекти</h3>
+<hr />
+<div class="row">
+    @foreach (var project in this.Model.Projects)
+    {
+        <div class="col-md-4">
+            <div class="card card-blog">
+                <div class="card-image">
+                    <a href="#pablo">
+                        <img class="img" src="@project.ImageUrl" />
+                        <div class="card-title">
+                            @project.Name
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card-content">
+                    <h6 class="category text-info">@project.CategoryName</h6>
+                    <p class="card-description">
+                        @project.Description.ToString().Substring(0, 50)...
+                    </p>
+                    <a asp-action="ById" asp-route-id="@project.Id" class="text-primary icon-move-right">
+                        Повече инфо
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

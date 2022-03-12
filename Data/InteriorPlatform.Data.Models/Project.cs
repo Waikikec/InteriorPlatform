@@ -12,6 +12,7 @@
             this.Favourites = new HashSet<ApplicationUser>();
             this.Images = new HashSet<Image>();
             this.Styles = new HashSet<Style>();
+            this.Visits = 0;
         }
 
         public string Name { get; set; }

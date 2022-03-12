@@ -31,6 +31,8 @@
                               new PositionsSeeder(),
                               new CategoriesSeeder(),
                               new StylesSeeder(),
+                              new CompaniesSeeder(),
+                              new ProjectsSeeder(),
                           };
 
             foreach (var seeder in seeders)

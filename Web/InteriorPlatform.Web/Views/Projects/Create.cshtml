@@ -63,12 +63,12 @@
                 <select asp-for="CategoryId" asp-items="categoryItems" class="selectpicker" data-style="select-with-transition" title="Избери категория" data-size="7" tabindex="-98"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Images"></label>
                 <input asp-for="Images" class="form-control" />
                 <span asp-validation-for="Images" class="text-danger"></span>
-            </div>
-            @*<div class="form-group text-center">
+            </div>*@
+            <div class="form-group text-center">
                 <div class="fileinput fileinput-new justify-content-center" data-provides="fileinput">
                     <div class="fileinput-new thumbnail img-raised">
                         <img src="~/assets/img/image_placeholder.jpg" alt="Images">
@@ -87,7 +87,7 @@
                         </a>
                     </div>
                 </div>
-            </div>*@
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Създай</button>
     </form>

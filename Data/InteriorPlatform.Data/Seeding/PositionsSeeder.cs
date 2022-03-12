@@ -38,7 +38,6 @@
                     Name = position,
                 });
             }
-
         }
     }
 }
