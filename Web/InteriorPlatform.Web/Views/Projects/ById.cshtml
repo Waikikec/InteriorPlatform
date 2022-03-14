@@ -24,8 +24,9 @@
                     <img class="img" src="~/assets/img/faces/marc.jpg" />
                 </a>
             </div>
-            <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
             <div class="card-content">
+                <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
+                <hr class="p-0" />
                 <h4 class="category text-gray">@Model.Name</h4>
                 <h6 class="category text-gray">@Model.Category.Name</h6>
                 <p class="card-description">
@@ -35,12 +36,15 @@
                 <div class="row">
                     <div class="col-sm-6 float-start">
                         <span class="card-description float-start">
-                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dddd, dd MMMM yyyy")</i>
+                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dd MMMM yyyy")</i>
                         </span>
                     </div>
                     <div class="col-sm-6 float-end">
                         <span class="card-description float-end">
                             <i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>
+                        </span> 
+                        <span class="card-description float-end">
+                            <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Visits</i>
                         </span>
                     </div>
                 </div>
