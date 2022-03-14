@@ -20,64 +20,46 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container" style="background-color: yellow">
-                @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="background-color: red">*@
-                @*
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>*@
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
-
-                @*<partial name="_LoginPartial" />*@
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group form-white is-empty">
+        <nav class="navbar navbar-expand-md bg-info" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Interior Platform</a>
+                </div>
+                <form class="navbar-form" role="search">
+                    <div class="form-group form-white is-empty navbar-center">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="material-input"></span>
                     </div>
                     <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini"><i class="material-icons">search</i></button>
                 </form>
-                <div class="collapse navbar-collapse" id="navbarToggler" style="background-color: red">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <partial name="_LoginPartial" />
+                        <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="All">All Projects</a></li>
+                        <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="Create">Create</a></li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Create">Create</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="All">All</a>
-                        </li>
-                        <li>
                             <a href="#pablo" class="btn btn-rose btn-raised btn-fab btn-fab-mini" data-toggle="dropdown">
                                 <i class="material-icons">email</i>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#pablo" class="profile-photo dropdown-toggle" data-toggle="dropdown">
+                        <li class="nav-item">
+                            <a href="#pablo" class="profile-photo" data-toggle="dropdown">
                                 <div class="profile-photo-small">
                                     <img src="~/assets/img/faces/avatar.jpg" alt="Circle Image" class="img-circle img-responsive">
                                 </div>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown-header">
-                                    @GlobalConstants.SystemName
-                                </li>
-                                <li class="divider"></li>
                                 <li>
                                     <a href="#pablo"><span class="material-icons">person</span> Моят профил</a>
                                 </li>
-                                <li>
+                                <li class="nav-item">
                                     <a href="#pablo"><span class="material-icons">email</span> Моите запитвания</a>
                                 </li>
                                 <li>
@@ -95,7 +77,6 @@
                     </ul>
                 </div>
             </div>
-            @*</div>*@
         </nav>
     </header>
 
