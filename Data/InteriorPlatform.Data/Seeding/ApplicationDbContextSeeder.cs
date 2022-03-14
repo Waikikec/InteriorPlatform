@@ -32,7 +32,7 @@
                               new CategoriesSeeder(),
                               new StylesSeeder(),
                               new CompaniesSeeder(),
-                              new ProjectsSeeder(),
+                              //// new ProjectsSeeder(),
                           };
 
             foreach (var seeder in seeders)

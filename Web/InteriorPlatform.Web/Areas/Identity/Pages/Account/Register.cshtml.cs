@@ -117,10 +117,13 @@
                     FirstName = this.Input.FirstName,
                     LastName = this.Input.LastName,
                     PasswordHash = this.Input.Password,
-                    PositionId = this.Input.PositionId,
+                    Company = new Company { Name = this.Input.Company },
                     TownId = this.Input.TownId,
+                    PositionId = this.Input.PositionId,
                     PhoneNumber = this.Input.PhoneNumber,
                 };
+
+
 
                 var result = await userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

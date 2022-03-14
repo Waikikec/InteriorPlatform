@@ -2,37 +2,114 @@
 @{
     this.ViewData["Title"] = Model.Id;
 }
-
-<div class="row m-4">
-    <div class="col-lg-8 g-mb-30 g-mb-0--lg">
-        @foreach (var image in Model.Images)
-        {
-            <div class="col-lg-6">
-                <img class="img-rounded img-responsive img-raised" src="~/images/projects/@image.Id.@image.Extension" />
-            </div>
-            <div class="col-sm-6">
-                <img class="img-rounded img-responsive img-raised" src="~/images/projects/@image.Id.@image.Extension" />
-            </div>
-        }
+<div class="container-fluid">
+    <div class="col-md-9 p-0">
+        <!-- add extra container element for Masonry -->
+        <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
+            <!-- add sizing element for columnWidth -->
+            <div class="grid-sizer"></div>
+            <!-- items use Bootstrap .col- classes -->
+            @foreach (var file in Model.Images)
+            {
+                <div class="grid-item col-md-6 p-0" style="background-color: beige">
+                    <img class="img-fluid" src="~/images/projects/@file.Id.@file.Extension" />
+                </div>
+            }
+        </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-md-3">
         <div class="card card-profile">
             <div class="card-avatar">
                 <a href="#pablo">
                     <img class="img" src="~/assets/img/faces/marc.jpg" />
                 </a>
             </div>
-
+            <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
             <div class="card-content">
-                <h6 class="category text-gray">CEO / Co-Founder</h6>
-
-                <h4 class="card-title">Alec Thompson</h4>
-
+                <h4 class="category text-gray">@Model.Name</h4>
+                <h6 class="category text-gray">@Model.Category.Name</h6>
                 <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    @Model.Description
                 </p>
-                <a href="#pablo" class="btn btn-info btn-round">Follow</a>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-6 float-start">
+                        <span class="card-description float-start">
+                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dddd, dd MMMM yyyy")</i>
+                        </span>
+                    </div>
+                    <div class="col-sm-6 float-end">
+                        <span class="card-description float-end">
+                            <i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>
+                        </span>
+                    </div>
+                </div>
+                <a href="#pablo" class="btn btn-info btn-round">Направете Заявка</a>
             </div>
         </div>
     </div>
 </div>
+
+
+@*<div class="section" id="carousel">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+    <!-- Carousel Card -->
+    <div class="card card-raised card-carousel">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+    @for (var i = 0; i < Model.Images.Count(); i++)
+    {
+    if (i == 0)
+    {
+    <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
+    }
+    else
+    {
+    <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+    }
+    }
+
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+    @for (var i = 0; i < Model.Images.Count(); i++)
+    {
+    var file = Model.Images.ToArray()[i];
+    if (i == 0)
+    {
+    <div class="item active">
+    <img src="~/images/projects/@file.Id.@file.Extension" class="d-block w-100" alt="@file.Id">
+    </div>
+    }
+    else
+    {
+    <div class="item">
+    <img src="~/images/projects/@file.Id.@file.Extension" class="d-block w-100" alt="@file.Id">
+    </div>
+    }
+    }
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <i class="material-icons">keyboard_arrow_left</i>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <i class="material-icons">keyboard_arrow_right</i>
+    </a>
+    </div>
+    </div>
+    </div>
+    <!-- End Carousel Card -->
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <!--         end carousel -->*@
