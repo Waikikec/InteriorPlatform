@@ -28,7 +28,14 @@
                     <div class="card-content">
                         <h6 class="category text-info">@project.CategoryName</h6>
                         <p class="card-description">
-                            @project.Description.ToString().Substring(0, 10)...
+                            @if (project.Description.Length > 100)
+                            {
+                                @project.Description.ToString().Substring(0, 77);
+                            }
+                            else
+                            {
+                                @project.Description.ToString();
+                            } ...
                         </p>
                         <a asp-action="ById" asp-route-id="@project.Id" class="text-primary icon-move-right">
                             Повече инфо
