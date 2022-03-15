@@ -3,6 +3,11 @@
     this.ViewData["Title"] = "All Projects";
 }
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
 <div class="container">
     <h3 class="card-title">Всички проекти</h3>
     <hr />
@@ -34,15 +39,5 @@
             </div>
         }
     </div>
-    <div class="pagination-area text-center">
-        <ul class="pagination">
-            <li><a href="#pablo">«</a></li>
-            <li><a href="#pablo">1</a></li>
-            <li><a href="#pablo">2</a></li>
-            <li class="active"><a href="#pablo">3</a></li>
-            <li><a href="#pablo">4</a></li>
-            <li><a href="#pablo">5</a></li>
-            <li><a href="#pablo">»</a></li>
-        </ul>
-    </div>
+    <partial name="_PagingPartial" model="@Model" />
 </div>

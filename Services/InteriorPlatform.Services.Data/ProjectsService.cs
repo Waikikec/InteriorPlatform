@@ -71,11 +71,13 @@
             await this.projectsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6)
         {
             var projects = this.projectsRepository
                 .AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
 

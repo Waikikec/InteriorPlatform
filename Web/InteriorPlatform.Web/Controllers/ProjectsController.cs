@@ -33,16 +33,19 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All(int id = 1)
         {
-            //if(id <= 0)
-            //{
-            //    return this.NotFound();
-            //}
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
 
+            const int ItemsPerPage = 6;
             var viewModel = new AllProjectsViewModel
             {
-                Projects = this.projectsService.GetAll<SingleProjectViewModel>(),
+                Projects = this.projectsService.GetAll<SingleProjectViewModel>(id, ItemsPerPage),
+                PageNumber = id,
+                ItemsPerPage = ItemsPerPage,
             };
 
             return this.View(viewModel);
@@ -92,7 +95,7 @@
 
             this.TempData["Message"] = "Project has been created successfully!";
 
-            return this.Redirect("/");
+            return this.RedirectToAction("All");
         }
     }
 }

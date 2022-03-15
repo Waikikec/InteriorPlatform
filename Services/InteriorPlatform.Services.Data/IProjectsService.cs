@@ -10,7 +10,7 @@
     {
         Task CreateAsync(CreateProjectInputModel input, ApplicationUser user, string imagePath);
 
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
 
         T GetById<T>(int id);
     }

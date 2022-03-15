@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class AllProjectsViewModel
+    public class AllProjectsViewModel : PagingViewModel
     {
         public IEnumerable<SingleProjectViewModel> Projects { get; set; }
     }
