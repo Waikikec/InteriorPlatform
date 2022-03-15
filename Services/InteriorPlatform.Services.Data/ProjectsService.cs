@@ -94,5 +94,12 @@
 
             return recipe;
         }
+
+        public int GetCount()
+        {
+            return this.projectsRepository
+                .AllAsNoTracking()
+                .Count();
+        }
     }
 }

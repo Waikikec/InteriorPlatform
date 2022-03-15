@@ -44,6 +44,7 @@
             var viewModel = new AllProjectsViewModel
             {
                 Projects = this.projectsService.GetAll<SingleProjectViewModel>(id, ItemsPerPage),
+                ProjectsCount = this.projectsService.GetCount(),
                 PageNumber = id,
                 ItemsPerPage = ItemsPerPage,
             };
