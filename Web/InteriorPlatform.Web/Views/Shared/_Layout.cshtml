@@ -7,7 +7,7 @@
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
 
     <!-- Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -94,11 +94,56 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer footer-white">
+        <div class="container">
+            <a class="footer-brand" href="http://interior-platform.com">@GlobalConstants.SystemName</a>
+            <ul class="pull-center">
+                <li>
+                    <a href="#pablo">
+                        Creative Tim
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="#pablo">
+                        Licenses
+                    </a>
+                </li>
+            </ul>
+            <ul class="social-buttons pull-right">
+                <li>
+                    <a href="https://twitter.com/@GlobalConstants.SystemName" target="_blank" class="btn btn-just-icon btn-simple btn-twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/@GlobalConstants.SystemName" target="_blank" class="btn btn-just-icon btn-simple btn-dribbble">
+                        <i class="fa fa-dribbble"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/@GlobalConstants.SystemName" target="_blank" class="btn btn-just-icon btn-simple btn-google">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </footer>
+    @*<footer class="footer footer-white text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

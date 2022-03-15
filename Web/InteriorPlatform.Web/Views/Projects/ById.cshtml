@@ -11,44 +11,46 @@
             <!-- items use Bootstrap .col- classes -->
             @foreach (var file in Model.Images)
             {
-                <div class="grid-item col-md-6 p-0" style="background-color: beige">
+                <div class="grid-item col-md-6 p-0">
                     <img class="img-fluid" src="~/images/projects/@file.Id.@file.Extension" />
                 </div>
             }
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card card-profile">
-            <div class="card-avatar">
-                <a href="#pablo">
-                    <img class="img" src="~/assets/img/faces/marc.jpg" />
-                </a>
-            </div>
-            <div class="card-content">
-                <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
-                <hr class="p-0" />
-                <h4 class="category text-gray">@Model.Name</h4>
-                <h6 class="category text-gray">@Model.Category.Name</h6>
-                <p class="card-description">
-                    @Model.Description
-                </p>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-6 float-start">
-                        <span class="card-description float-start">
-                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dd MMMM yyyy")</i>
-                        </span>
-                    </div>
-                    <div class="col-sm-6 float-end">
-                        <span class="card-description float-end">
-                            <i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>
-                        </span> 
-                        <span class="card-description float-end">
-                            <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Visits</i>
-                        </span>
-                    </div>
+        <div class="affix">
+            <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="#pablo">
+                        <img class="img" src="~/assets/img/faces/marc.jpg" />
+                    </a>
                 </div>
-                <a href="#pablo" class="btn btn-info btn-round">Направете Заявка</a>
+                <div class="card-content">
+                    <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
+                    <hr class="p-0" />
+                    <h4 class="category text-gray">@Model.Name</h4>
+                    <h6 class="category text-gray">@Model.Category.Name</h6>
+                    <p class="card-description">
+                        @Model.Description
+                    </p>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-6 float-start">
+                            <span class="card-description float-start">
+                                <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dd MMMM yyyy")</i>
+                            </span>
+                        </div>
+                        <div class="col-sm-6 float-end">
+                            <span class="card-description float-end">
+                                <i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>
+                            </span>
+                            <span class="card-description float-end">
+                                <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Visits</i>
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#pablo" class="btn btn-info btn-round">Направете Заявка</a>
+                </div>
             </div>
         </div>
     </div>
