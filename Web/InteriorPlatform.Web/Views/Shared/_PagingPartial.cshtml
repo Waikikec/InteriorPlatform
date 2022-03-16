@@ -1,7 +1,7 @@
 ﻿@model PagingViewModel
 <div class="pagination-area text-center">
     <ul class="pagination">
-        <li class="@if (!Model.HasPreviousPage) { <text>disabled</text>}">
+        <li class="@if (!Model.HasPreviousPage) { <text>hidden</text>}">
             <a asp-action="All" asp-route-id="@Model.PreviousPageNumber">« Previous</a>
         </li>
         @for (int i = Model.PageNumber - 1; i < Model.PageNumber; i++)
@@ -19,7 +19,7 @@
                 <li><a asp-action="All" asp-route-id="@i">@i</a></li>
             }
         }
-        <li class="@if (!Model.HasNextPage) { <text>disabled</text>}">
+        <li class="@if (!Model.HasNextPage) { <text>hidden</text>}">
             <a asp-action="All" asp-route-id="@Model.NextPageNumber">Next »</a>
         </li>
     </ul>
