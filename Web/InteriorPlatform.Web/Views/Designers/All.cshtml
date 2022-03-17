@@ -1,0 +1,52 @@
+﻿@model InteriorPlatform.Web.ViewModels.Designer.AllDesignersViewModel
+@{
+    this.ViewData["Title"] = "All Designers";
+}
+
+<div class="container">
+    <h3 class="card-title">Всички дизайнери</h3>
+    <hr />
+    <div class="row">
+        @foreach (var designer in this.Model.Designers)
+        {
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card card-profile card-plain" style="border: none">
+                        <div class="col-md-5">
+                            <div class="card-image">
+                                <a asp-action="ById" asp-route-id="@designer.Id">
+                                    @if (designer.ProfilePictureUrl == null)
+                                    {
+                                        <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
+                                    }
+                                </a>
+                                <div class="colored-shadow" style="background-image: url(&quot;../assets/img/faces/marc.jpg&quot;); opacity: 1;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-content">
+                                <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
+                                <h6 class="category text-muted">@designer.PositionName</h6>
+                                <hr />
+                                <div class="footer">
+                                    <div class="stats">
+                                        <span class="material-icons">location_on</span> @designer.TownName
+                                        <span class="material-icons">work</span> 135 <br>
+                                        <span class="material-icons">visibility</span> 4127
+                                        <span class="material-icons">trending_up</span> 4210
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+    <partial name="_PagingPartial" model="@Model" />
+</div>
