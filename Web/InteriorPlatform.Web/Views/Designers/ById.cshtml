@@ -14,7 +14,9 @@
         </div>
     </div>
     <div class="row">
+        <!-- 1/3 of the screen width for the profile card and profile tabs -->
         <div class="col-md-3">
+            <!-- Profile Card -->
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
@@ -45,30 +47,93 @@
 
                 </div>
             </div>
+
+            <!-- Profile Tabs -->
+            <div class="profile-tabs">
+                <div class="nav-align-center">
+                    <ul class="nav nav-pills nav-pills-icons" role="tablist">
+                        <li class="active">
+                            <a href="#work" role="tab" data-toggle="tab">
+                                <i class="material-icons">palette</i>
+                                Проекти
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#inquires" role="tab" data-toggle="tab">
+                                <i class="fa fa-question" aria-hidden="true"></i>
+                                Запитвания
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#media" role="tab" data-toggle="tab">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                Настройки
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
         </div>
 
+        <!-- 2/3 of the screen width for the Projects -->
         <div class="col-md-9">
-            <!-- add extra container element for Masonry -->
-            <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
-                <!-- add sizing element for columnWidth -->
-                <div class="grid-sizer"></div>
-                <!-- items use Bootstrap .col- classes -->
-                @foreach (var project in Model.Projects)
-                {
-                    <div class="grid-item col-md-2 mt-5">
-                        <div class="card card-background" style="background-image: url(@project.ImageUrl)">
-                            <div class="card-content">
-                                <h6 class="category text-info">@project.CategoryName</h6>
-                                <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">
-                                    <h4 class="card-title">@project.Name</h4>
-                                </a>
-                                <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id" class="btn btn-white btn-round">
-                                    <i class="material-icons">subject</i> повече
-                                </a>
+            <div class="tab-content">
+                <!-- add extra container element for Masonry -->
+                <div class="tab-pane active" id="work">
+                    <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
+                        <!-- add sizing element for columnWidth -->
+                        <div class="grid-sizer"></div>
+                        <!-- items use Bootstrap .col- classes -->
+                        @foreach (var project in Model.Projects)
+                        {
+                            <div class="grid-item col-md-3 mt-5">
+                                <div class="card card-background" style="background-image: url(@project.ImageUrl)">
+                                    <div class="card-content">
+                                        <h6 class="category text-info">@project.CategoryName</h6>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">
+                                            <h4 class="card-title">@project.Name</h4>
+                                        </a>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id" class="btn btn-white btn-round">
+                                            <i class="material-icons">subject</i> повече
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="grid-item col-md-3 mt-5">
+                                <div class="card card-background" style="background-image: url(@project.ImageUrl)">
+                                    <div class="card-content">
+                                        <h6 class="category text-info">@project.CategoryName</h6>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">
+                                            <h4 class="card-title">@project.Name</h4>
+                                        </a>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id" class="btn btn-white btn-round">
+                                            <i class="material-icons">subject</i> повече
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid-item col-md-3 mt-5">
+                                <div class="card card-background" style="background-image: url(@project.ImageUrl)">
+                                    <div class="card-content">
+                                        <h6 class="category text-info">@project.CategoryName</h6>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">
+                                            <h4 class="card-title">@project.Name</h4>
+                                        </a>
+                                        <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id" class="btn btn-white btn-round">
+                                            <i class="material-icons">subject</i> повече
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
-                }
+                </div>
+
+                <div class="tab-pane" id="inquires">
+                    <span>Hi</span>
+                </div>
             </div>
         </div>
     </div>
