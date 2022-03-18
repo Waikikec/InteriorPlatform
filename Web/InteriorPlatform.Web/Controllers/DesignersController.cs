@@ -32,6 +32,7 @@
         {
             var viewModel = new ByIdDesignerViewModel
             {
+                Designer = this.designersService.GetById<SingleDesignerViewModel>(id),
                 Projects = this.projectsService.GetAllByUserId<SingleProjectViewModel>(id),
             };
 

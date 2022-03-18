@@ -1,5 +1,7 @@
 ﻿namespace InteriorPlatform.Web.ViewModels.Designer
 {
+    using System;
+
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
 
@@ -18,5 +20,7 @@
         public string TownName { get; set; }
 
         public int ProjectsCount { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

@@ -7,9 +7,9 @@
     using InteriorPlatform.Services.Mapping;
     using InteriorPlatform.Web.ViewModels.Project;
 
-    public class ByIdDesignerViewModel : SingleDesignerViewModel, IMapFrom<ApplicationUser>
+    public class ByIdDesignerViewModel
     {
-        public DateTime CreatedOn { get; set; }
+        public SingleDesignerViewModel Designer { get; set; }
 
         public IEnumerable<SingleProjectViewModel> Projects { get; set; }
     }
