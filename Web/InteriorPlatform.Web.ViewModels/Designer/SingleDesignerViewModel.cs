@@ -17,6 +17,6 @@
 
         public string TownName { get; set; }
 
-        //public UserProject UserProjects { get; set; }
+        public int ProjectsCount { get; set; }
     }
 }

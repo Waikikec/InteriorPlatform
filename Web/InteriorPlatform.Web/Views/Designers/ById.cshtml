@@ -1,0 +1,67 @@
+﻿@model InteriorPlatform.Web.ViewModels.Designer.ByIdDesignerViewModel
+@{
+    this.ViewData["Title"] = @Model.Id;
+}
+<div class="container-fluid">
+    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="title">About Us</h1>
+                    <h4>Meet the amazing team behind this project and find out more about how we work.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a href="#pablo">
+                    <img class="img" src="~/assets/img/faces/marc.jpg" />
+                </a>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">@Model.FirstName @Model.LastName</h4>
+                <hr class="p-0" />
+                <h4 class="category text-gray">@Model.PositionName</h4>
+                <h6 class="category text-gray">@Model.TownName</h6>
+                <p class="card-description">
+                    @Model.ProjectsCount
+                </p>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-6 float-start">
+                        <span class="card-description float-start">
+                            @*<i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dd MMMM yyyy")</i>*@
+                        </span>
+                    </div>
+                    <div class="col-sm-6 float-end">
+                        <span class="card-description float-end">
+                            @*<i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>*@
+                        </span>
+                        <span class="card-description float-end">
+                            @*<i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Visits</i>*@
+                        </span>
+                    </div>
+                </div>
+                <a href="#pablo" class="btn btn-info btn-round">Направете Заявка</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9 p-0">
+        <!-- add extra container element for Masonry -->
+        <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
+            <!-- add sizing element for columnWidth -->
+            <div class="grid-sizer"></div>
+            <!-- items use Bootstrap .col- classes -->
+                        @foreach (var project in Model.Projects)
+                {
+                <div class="grid-item col-md-6 p-0">
+                <img class="img-fluid w-100" src="@project.ImageUrl" />
+                </div>
+                }
+        </div>
+    </div>
+</div>

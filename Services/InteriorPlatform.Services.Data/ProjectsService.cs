@@ -84,6 +84,17 @@
             return projects;
         }
 
+        public IEnumerable<T> GetAllByUserId<T>(string id)
+        {
+            var projects = this.projectsRepository
+                .AllAsNoTracking()
+                .Where(x => x.AddedByUserId == id)
+                .To<T>()
+                .ToList();
+
+            return projects;
+        }
+
         public T GetById<T>(int id)
         {
             var recipe = this.projectsRepository
