@@ -18,7 +18,7 @@
     <link href="~/assets/css/material-kit.css?v=1.2.1" rel="stylesheet" />
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-md bg-light" role="navigation">
             <div class="container-fluid">
@@ -95,7 +95,7 @@
         </main>
     </div>
 
-    <footer class="footer footer-white">
+    <footer class="footer footer-white mt-auto">
         <div class="container">
             <a class="footer-brand" href="http://interior-platform.com">@GlobalConstants.SystemName</a>
             <ul class="pull-center">
@@ -140,11 +140,6 @@
 
         </div>
     </footer>
-    @*<footer class="footer footer-white text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>

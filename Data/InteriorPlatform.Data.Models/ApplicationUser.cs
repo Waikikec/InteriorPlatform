@@ -18,6 +18,7 @@ namespace InteriorPlatform.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.UserProjects = new HashSet<UserProject>();
+            this.Inquires = new HashSet<Inquire>();
         }
 
         public string FirstName { get; set; }
@@ -60,5 +61,7 @@ namespace InteriorPlatform.Data.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
         public virtual ICollection<UserProject> UserProjects { get; set; }
+
+        public virtual ICollection<Inquire> Inquires { get; set; }
     }
 }
