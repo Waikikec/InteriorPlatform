@@ -16,15 +16,18 @@
     {
         private readonly IDesignersService designersService;
         private readonly IProjectsService projectsService;
+        private readonly IInquiresService inquiresService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public DesignersController(
             IDesignersService designersService,
             IProjectsService projectsService,
+            IInquiresService inquiresService,
             UserManager<ApplicationUser> userManager)
         {
             this.designersService = designersService;
             this.projectsService = projectsService;
+            this.inquiresService = inquiresService;
             this.userManager = userManager;
         }
 
@@ -44,6 +47,7 @@
             {
                 Designer = this.designersService.GetById<SingleDesignerViewModel>(id),
                 Projects = this.projectsService.GetAllByUserId<SingleProjectViewModel>(id),
+                Inquires = this.inquiresService.GetAllInquiresByUserId<InquireViewModel>(id),
             };
 
             return this.View(viewModel);
@@ -54,7 +58,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("All", nameof(DesignersController));
+                return this.RedirectToAction("All", "Designers");
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
@@ -71,7 +75,7 @@
 
             this.TempData["Message"] = "Inquire has been sent successfully!";
 
-            return this.RedirectToAction("All", nameof(DesignersController));
+            return this.RedirectToAction("All", "Designers");
         }
     }
 }
