@@ -1,0 +1,11 @@
+﻿namespace InteriorPlatform.Web.ViewModels.Inquire
+{
+    using InteriorPlatform.Web.ViewModels.Project;
+
+    public class InquireAssemblyViewModel
+    {
+        public InquireInputModel Inquire { get; set; }
+
+        public ByIdProjectViewModel Project { get; set; }
+    }
+}

@@ -1,6 +1,6 @@
-﻿@model InteriorPlatform.Web.ViewModels.Project.ByIdProjectViewModel
+﻿@model InteriorPlatform.Web.ViewModels.Inquire.InquireAssemblyViewModel
 @{
-    this.ViewData["Title"] = Model.Id;
+    this.ViewData["Title"] = Model.Project.Id;
 }
 <div class="container-fluid">
     <div class="col-md-9 p-0">
@@ -8,7 +8,7 @@
         <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
             <!-- add sizing element for columnWidth -->
             <div class="grid-sizer"></div>
-            @foreach (var file in Model.Images)
+            @foreach (var file in Model.Project.Images)
             {
                 <div class="grid-item col-md-6 p-0">
                     <img class="img-fluid w-100" src="~/images/projects/@file.Id.@file.Extension" />
@@ -24,26 +24,26 @@
                 </a>
             </div>
             <div class="card-content">
-                <h4 class="card-title">@Model.AddedByUser.FirstName @Model.AddedByUser.LastName</h4>
+                <h4 class="card-title">@Model.Project.AddedByUser.FirstName @Model.Project.AddedByUser.LastName</h4>
                 <hr class="p-0" />
-                <h4 class="category text-gray">@Model.Name</h4>
-                <h6 class="category text-gray">@Model.Category.Name</h6>
+                <h4 class="category text-gray">@Model.Project.Name</h4>
+                <h6 class="category text-gray">@Model.Project.Category.Name</h6>
                 <p class="card-description">
-                    @Model.Description
+                    @Model.Project.Description
                 </p>
                 <hr />
                 <div class="row">
                     <div class="col-sm-6 float-start">
                         <span class="card-description float-start">
-                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.CreatedOn.ToString("dd MMMM yyyy")</i>
+                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.Project.CreatedOn.ToString("dd MMMM yyyy")</i>
                         </span>
                     </div>
                     <div class="col-sm-6 float-end">
                         <span class="card-description float-end">
-                            <i class="fa fa-eye" aria-hidden="true"> @Model.Visits</i>
+                            <i class="fa fa-eye" aria-hidden="true"> @Model.Project.Visits</i>
                         </span>
                         <span class="card-description float-end">
-                            <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Visits</i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Project.Visits</i>
                         </span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<!-- Login Modal -->
+<!-- Inquire Start Modal -->
 <div class="modal fade" id="inquireModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
@@ -67,7 +67,7 @@
                         <h4 class="card-title">Запитване</h4>
                     </div>
                 </div>
-                <form class="form" method="post">
+                <form asp-controller="Designers" asp-action="Inquire" class="form" method="post" id="inquireForm">
                     <div class="modal-body">
                         <p class="description text-center">Изпрати запитване и получи оферта</p>
 
@@ -76,42 +76,47 @@
                                 <span class="input-group-addon">
                                     <i class="material-icons">face</i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Име Фамилия">
+                                <input asp-for="@Model.Inquire.Name" type="text" class="form-control" placeholder="Име Фамилия">
+                                <span asp-validation-for="@Model.Inquire.Name" class="text-danger"></span>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="material-icons">phone_iphone</span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Телефон">
+                                <input asp-for="@Model.Inquire.PhoneNumber" type="text" class="form-control" placeholder="Телефон">
+                                <span asp-validation-for="@Model.Inquire.PhoneNumber" class="text-danger"></span>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">email</i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Имейл">
+                                <input asp-for="@Model.Inquire.Email" type="text" class="form-control" placeholder="Имейл">
+                                <span asp-validation-for="@Model.Inquire.Email" class="text-danger"></span>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="material-icons">description</span>
                                 </span>
-                                <textarea type="text"
+                                <textarea asp-for="@Model.Inquire.Info"
+                                          type="text"
                                           class="form-control"
                                           placeholder="Описание"
                                           rows="3"></textarea>
+                                <span asp-validation-for="@Model.Inquire.Info" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center m-5">
-                        <button type="submit" class="btn btn-primary btn-round">
+                        <a class="btn btn-primary btn-round" onclick="document.getElementById('inquireForm').submit();">
                             <i class="fa fa-paper-plane" aria-hidden="true"></i> Изпрати
-                        </button>
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!--  End Modal -->
+<!--  Inquire End Modal -->

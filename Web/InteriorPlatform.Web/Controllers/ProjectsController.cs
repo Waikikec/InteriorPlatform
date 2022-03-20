@@ -5,6 +5,7 @@
 
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Data;
+    using InteriorPlatform.Web.ViewModels.Inquire;
     using InteriorPlatform.Web.ViewModels.Project;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
@@ -54,8 +55,13 @@
 
         public IActionResult ById(int id)
         {
-            var project = this.projectsService.GetById<ByIdProjectViewModel>(id);
-            return this.View(project);
+            // var project = this.projectsService.GetById<ByIdProjectViewModel>(id);
+            var viewModel = new InquireAssemblyViewModel
+            {
+                Project = this.projectsService.GetById<ByIdProjectViewModel>(id),
+            };
+
+            return this.View(viewModel);
         }
 
         [Authorize]

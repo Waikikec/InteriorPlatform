@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace InteriorPlatform.Data.Migrations
+﻿namespace InteriorPlatform.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddtionalTableStyle2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,7 +23,7 @@ namespace InteriorPlatform.Data.Migrations
                 columns: table => new
                 {
                     ProjectsId = table.Column<int>(type: "int", nullable: false),
-                    StylesId = table.Column<int>(type: "int", nullable: false)
+                    StylesId = table.Column<int>(type: "int", nullable: false),
                 },
                 constraints: table =>
                 {

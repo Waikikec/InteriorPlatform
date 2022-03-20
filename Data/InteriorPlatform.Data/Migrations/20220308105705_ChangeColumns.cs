@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace InteriorPlatform.Data.Migrations
+﻿namespace InteriorPlatform.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangeColumns : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

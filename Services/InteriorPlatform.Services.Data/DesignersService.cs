@@ -2,18 +2,39 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using InteriorPlatform.Data.Common.Repositories;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
+    using InteriorPlatform.Web.ViewModels.Inquire;
 
     public class DesignersService : IDesignersService
     {
         private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly IDeletableEntityRepository<Inquire> inquiresRepository;
 
-        public DesignersService(IDeletableEntityRepository<ApplicationUser> usersRepository)
+        public DesignersService(
+            IDeletableEntityRepository<ApplicationUser> usersRepository,
+            IDeletableEntityRepository<Inquire> inquiresRepository)
         {
             this.usersRepository = usersRepository;
+            this.inquiresRepository = inquiresRepository;
+        }
+
+        public async Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user)
+        {
+            var inquire = new Inquire
+            {
+                Name = model.Inquire.Name,
+                PhoneNumber = model.Inquire.PhoneNumber,
+                Email = model.Inquire.Email,
+                Info = model.Inquire.Info,
+                AddedByUserId = user.Id,
+            };
+
+            await this.inquiresRepository.AddAsync(inquire);
+            await this.inquiresRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetAll<T>()

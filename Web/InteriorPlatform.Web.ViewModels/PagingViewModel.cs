@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace InteriorPlatform.Web.ViewModels
+﻿namespace InteriorPlatform.Web.ViewModels
 {
+    using System;
+
     public class PagingViewModel
     {
         public int PageNumber { get; set; }

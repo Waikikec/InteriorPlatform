@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace InteriorPlatform.Data.Migrations
+﻿namespace InteriorPlatform.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AdditionalTableStyle : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
