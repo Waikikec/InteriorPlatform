@@ -4,11 +4,10 @@
 }
 <div class="container-fluid">
     <div class="col-md-9 p-0">
-        <!-- add extra container element for Masonry -->
+        <!-- Masonry Gallery -->
         <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
             <!-- add sizing element for columnWidth -->
             <div class="grid-sizer"></div>
-            <!-- items use Bootstrap .col- classes -->
             @foreach (var file in Model.Images)
             {
                 <div class="grid-item col-md-6 p-0">
@@ -48,71 +47,71 @@
                         </span>
                     </div>
                 </div>
-                <a href="#pablo" class="btn btn-info btn-round">Направете Заявка</a>
+
+                <!-- Adding Button for Inquire -->
+                <button class="btn btn-info btn-round" data-toggle="modal" data-target="#inquireModal">
+                    <i class="material-icons">assignment</i> Направи Запитване
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-@*<div class="section" id="carousel">
-    <div class="container">
-    <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-    <!-- Carousel Card -->
-    <div class="card card-raised card-carousel">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <div class="carousel slide" data-ride="carousel">
+<!-- Login Modal -->
+<div class="modal fade" id="inquireModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <div class="header header-primary text-center p-5">
+                        <h4 class="card-title">Запитване</h4>
+                    </div>
+                </div>
+                <form class="form" method="post">
+                    <div class="modal-body">
+                        <p class="description text-center">Изпрати запитване и получи оферта</p>
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-    @for (var i = 0; i < Model.Images.Count(); i++)
-    {
-    if (i == 0)
-    {
-    <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
-    }
-    else
-    {
-    <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
-    }
-    }
+                        <div class="card-content">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">face</i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Име Фамилия">
+                            </div>
 
-    </ol>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="material-icons">phone_iphone</span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Телефон">
+                            </div>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-    @for (var i = 0; i < Model.Images.Count(); i++)
-    {
-    var file = Model.Images.ToArray()[i];
-    if (i == 0)
-    {
-    <div class="item active">
-    <img src="~/images/projects/@file.Id.@file.Extension" class="d-block w-100" alt="@file.Id">
-    </div>
-    }
-    else
-    {
-    <div class="item">
-    <img src="~/images/projects/@file.Id.@file.Extension" class="d-block w-100" alt="@file.Id">
-    </div>
-    }
-    }
-    </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">email</i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Имейл">
+                            </div>
 
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-    <i class="material-icons">keyboard_arrow_left</i>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-    <i class="material-icons">keyboard_arrow_right</i>
-    </a>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="material-icons">description</span>
+                                </span>
+                                <textarea type="text"
+                                          class="form-control"
+                                          placeholder="Описание"
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center m-5">
+                        <button type="submit" class="btn btn-primary btn-round">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> Изпрати
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    <!-- End Carousel Card -->
-
-    </div>
-    </div>
-    </div>
-    </div>
-    <!--         end carousel -->*@
+</div>
+<!--  End Modal -->
