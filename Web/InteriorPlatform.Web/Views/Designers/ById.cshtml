@@ -107,32 +107,47 @@
                 <!-- INQUIRES TAB -->
                 <div class="tab-pane" id="inquires">
                     <div class="col-md-6">
-                        @foreach (var inquire in Model.Inquires)
+                        @if (Model.Inquires.Count() == 0)
                         {
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
+                            <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="headingOne">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
                                             <h4 class="panel-title">
-                                                Запитване #@inquire.Id
-                                                <i class="material-icons">keyboard_arrow_down</i>
+                                                Все още нямате изпратени запитвания
                                             </h4>
                                         </a>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
-                                        <div class="card card-pricing">
-                                            <div class="card-content">
-                                                <ul>
-                                                    <li><i class="material-icons">face</i> @inquire.Name</li>
-                                                    <li><span class="material-icons">phone_iphone</span> @inquire.PhoneNumber</li>
-                                                    <li><i class="material-icons">email</i> @inquire.Email</li>
-                                                    <li><span class="material-icons">description</span> @inquire.Info</li>
-                                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var inquire in Model.Inquires)
+                            {
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                <h4 class="panel-title">
+                                                    Запитване #@inquire.Id
+                                                    <i class="material-icons">keyboard_arrow_down</i>
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                                            <div class="card card-pricing">
+                                                <div class="card-content">
+                                                    <ul>
+                                                        <li><i class="material-icons">face</i> @inquire.Name</li>
+                                                        <li><span class="material-icons">phone_iphone</span> @inquire.PhoneNumber</li>
+                                                        <li><i class="material-icons">email</i> @inquire.Email</li>
+                                                        <li><span class="material-icons">description</span> @inquire.Info</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
                     </div>
                 </div>
