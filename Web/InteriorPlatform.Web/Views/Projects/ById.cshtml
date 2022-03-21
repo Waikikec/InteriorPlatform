@@ -16,6 +16,8 @@
             }
         </div>
     </div>
+
+    <!-- CARD PROFILE -->
     <div class="col-md-3">
         <div class="card card-profile">
             <div class="card-avatar">
@@ -40,10 +42,11 @@
                     </div>
                     <div class="col-sm-6 float-end">
                         <span class="card-description float-end">
-                            <i class="fa fa-eye" aria-hidden="true"> @Model.Project.Visits</i>
+                            if(@Model.Project.)
+                            <span class="material-icons">favorite_border</span>
                         </span>
                         <span class="card-description float-end">
-                            <i class="fa fa-thumbs-up" aria-hidden="true"> @Model.Project.Visits</i>
+                            <span class="material-icons">thumb_up</span> @Model.Project.Visits
                         </span>
                     </div>
                 </div>
@@ -63,7 +66,7 @@
         <div class="modal-content">
             <div class="card card-signup card-plain">
                 <div class="modal-header">
-                    <div class="header header-primary text-center p-5">
+                    <div class="header header-primary text-center p-3">
                         <h4 class="card-title">Запитване</h4>
                     </div>
                 </div>
