@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InteriorPlatform.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220320124046_InquiresDataModel")]
-    partial class InquiresDataModel
+    [Migration("20220322192820_Inquire_Like_Database_Models")]
+    partial class Inquire_Like_Database_Models
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -297,7 +297,39 @@ namespace InteriorPlatform.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Inquire");
+                    b.ToTable("Inquires");
+                });
+
+            modelBuilder.Entity("InteriorPlatform.Data.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LikeType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Position", b =>
@@ -337,6 +369,7 @@ namespace InteriorPlatform.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AddedByUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CategoryId")
@@ -679,11 +712,32 @@ namespace InteriorPlatform.Data.Migrations
                     b.Navigation("AddedByUser");
                 });
 
+            modelBuilder.Entity("InteriorPlatform.Data.Models.Like", b =>
+                {
+                    b.HasOne("InteriorPlatform.Data.Models.Project", "Project")
+                        .WithMany("Likes")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InteriorPlatform.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("InteriorPlatform.Data.Models.Project", b =>
                 {
                     b.HasOne("InteriorPlatform.Data.Models.ApplicationUser", "AddedByUser")
                         .WithMany()
-                        .HasForeignKey("AddedByUserId");
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("InteriorPlatform.Data.Models.Category", "Category")
                         .WithMany("Projects")
@@ -825,6 +879,8 @@ namespace InteriorPlatform.Data.Migrations
                     b.Navigation("Favourites");
 
                     b.Navigation("Images");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("InteriorPlatform.Data.Models.Town", b =>
