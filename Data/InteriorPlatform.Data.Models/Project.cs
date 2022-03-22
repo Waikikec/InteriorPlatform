@@ -1,6 +1,7 @@
 ﻿namespace InteriorPlatform.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using InteriorPlatform.Data.Common.Models;
@@ -12,6 +13,7 @@
             this.Favourites = new HashSet<ApplicationUser>();
             this.Images = new HashSet<Image>();
             this.Styles = new HashSet<Style>();
+            this.Likes = new HashSet<Like>();
             this.Visits = 0;
         }
 
@@ -27,6 +29,7 @@
 
         public bool IsAwarded { get; set; }
 
+        [Required]
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
@@ -53,5 +56,7 @@
         public virtual ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Style> Styles { get; set; }
+
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }
