@@ -12,8 +12,8 @@
 
         public virtual Project Project { get; set; }
 
-        [ForeignKey(nameof(User))]
         [Required]
+        [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
