@@ -42,13 +42,20 @@
                         </span>
                     </div>
                     <div class="col-sm-6" >
-@*                        <span class="card-description float-end d-flex align-items-center">
-                            <span class="material-icons">favorite_border</span>
-                        </span>*@
                         <span class="card-description float-end d-flex align-items-center">
-                            <span class="material-icons" data-like="0">thumb_up_off_alt</span>
-                            <span class="material-icons" data-like="1">thumb_up</span>
-                            <span id="likesCount">@Model.Project.LikesCount</span>
+                            <span class="material-icons active">favorite_border</span>
+                        </span>
+                        <span class="card-description float-end d-flex align-items-center">
+                                <span class="material-icons" style="cursor: pointer" data-like="1">thumb_up</span>
+                                <span id="likesCountValue">@Model.Project.LikesCount</span>
+                                <span class="material-icons" style="cursor: pointer" data-like="0">thumb_down</span>
+@*                            @if (Model.Project.Likes.Any(x => x.UserId == Model.Project.AddedByUser.Id))
+                            {
+                            }
+                            else
+                            {
+                            }*@
+                            
                         </span>
                     </div>
                 </div>
@@ -75,11 +82,16 @@
             $.ajax({
                 type: "POST",
                 url: "/api/Likes",
+                dataType: "json",
                 data: JSON.stringify(data),
-                success: function (data) {
-                    console.log(data)
+                async: true,
+                headers: {
+                    'X-CSRF-TOKEN': antiForgeryToken
                 },
-                contentType: 'application/json',
+                success: function (data) {
+                    $('#likesCountValue').html(data.likesCount);
+                },
+                contentType: "application/json",
             });
         })
     });
