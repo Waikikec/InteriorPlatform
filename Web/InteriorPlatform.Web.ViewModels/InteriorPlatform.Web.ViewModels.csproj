@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\Services\InteriorPlatform.Services.Mapping\InteriorPlatform.Services.Mapping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Likes\" />
-  </ItemGroup>
-
 </Project>

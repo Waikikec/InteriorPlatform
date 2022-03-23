@@ -70,6 +70,7 @@
             services.AddTransient<IProjectsService, ProjectsService>();
             services.AddTransient<IDesignersService, DesignersService>();
             services.AddTransient<IInquiresService, InquiresService>();
+            services.AddTransient<ILikesService, LikesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

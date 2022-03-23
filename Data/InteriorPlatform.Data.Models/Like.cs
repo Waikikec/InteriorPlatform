@@ -18,6 +18,6 @@
 
         public virtual ApplicationUser User { get; set; }
 
-        public LikeType LikeType { get; set; }
+        public byte Value { get; set; }
     }
 }

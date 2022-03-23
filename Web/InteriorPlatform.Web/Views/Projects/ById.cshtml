@@ -35,18 +35,20 @@
                 </p>
                 <hr />
                 <div class="row">
-                    <div class="col-sm-6 float-start">
-                        <span class="card-description float-start">
-                            <i class="fa fa-clock-o float-start" aria-hidden="true"> @Model.Project.CreatedOn.ToString("dd MMMM yyyy")</i>
+                    <div class="col-sm-6">
+                        <span class="card-description float-start d-flex align-items-center">
+                            <span class="material-icons">schedule </span>
+                            @Model.Project.CreatedOn.ToString("dd MMMM yyyy")
                         </span>
                     </div>
-                    <div class="col-sm-6 float-end">
-                        <span class="card-description float-end">
-                            @*if(@Model.Project.Likes))*@
+                    <div class="col-sm-6" >
+@*                        <span class="card-description float-end d-flex align-items-center">
                             <span class="material-icons">favorite_border</span>
-                        </span>
-                        <span class="card-description float-end">
-                            <span class="material-icons">thumb_up</span>
+                        </span>*@
+                        <span class="card-description float-end d-flex align-items-center">
+                            <span class="material-icons" data-like="0">thumb_up_off_alt</span>
+                            <span class="material-icons" data-like="1">thumb_up</span>
+                            <span id="likesCount">@Model.Project.LikesCount</span>
                         </span>
                     </div>
                 </div>
@@ -59,6 +61,30 @@
         </div>
     </div>
 </div>
+
+<!-- AJAX Like Post Querry -->
+<form method="post" id="antiForgeryForm"></form>
+@section Scripts{
+<script>
+    $("span[data-like]").each(function (el) {
+        $(this).click(function(){
+            var value = $(this).attr("data-like");
+            var projectId = @Model.Project.Id;
+            var antiForgeryToken = $('#antiForgeryForm input[name=__RequestVerificationToken]').val();
+            var data={ projectId: projectId, value: value};
+            $.ajax({
+                type: "POST",
+                url: "/api/Likes",
+                data: JSON.stringify(data),
+                success: function (data) {
+                    console.log(data)
+                },
+                contentType: 'application/json',
+            });
+        })
+    });
+</script>
+}
 
 <!-- Inquire Start Modal -->
 <div class="modal fade" id="inquireModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,6 +1,5 @@
 ﻿namespace InteriorPlatform.Services.Data
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -19,11 +18,27 @@
         public int GetAllLikes(int projectId)
             => this.likesRepository.All()
             .Where(x => x.ProjectId == projectId)
-            .Sum(x => (int)x.LikeType);
+            .Sum(x => x.Value);
 
         public async Task SetLikeAsync(int projectId, string userId, byte value)
         {
-            throw new NotImplementedException();
+            var like = this.likesRepository
+                .All()
+                .FirstOrDefault(x => x.ProjectId == projectId && x.UserId == userId);
+
+            if (like == null)
+            {
+                like = new Like
+                {
+                    ProjectId = projectId,
+                    UserId = userId,
+                };
+
+                await this.likesRepository.AddAsync(like);
+            }
+
+            like.Value = value;
+            await this.likesRepository.SaveChangesAsync();
         }
     }
 }
