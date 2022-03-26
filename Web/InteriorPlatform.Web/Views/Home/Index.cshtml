@@ -1,4 +1,5 @@
 ﻿@using InteriorPlatform.Common
+@model InteriorPlatform.Web.ViewModels.Home.HomePageViewModel
 @{
     this.ViewData["Title"] = "Дизайн Фаб";
 }
@@ -7,82 +8,53 @@
     <h1 class="display-4">Добре дошли, <i class="fa fa-industry" aria-hidden="true"></i> @GlobalConstants.SystemName</h1>
 </div>
 
-<!-- Random Projects -->
+<!-- Div Main Raised Effect -->
 <div class="main main-raised m-5">
+
+    <!-- Random Projects -->
     <div class="container-fluid section-white">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <h2 class="title">Нашите топ проекти</h2>
-                    <h5 class="description">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</h5>
+                    <h5 class="description">Най-добрите проекти от Фаб Дизайн винаги се отличават с висок професионализъм и голям интерес.</h5>
                 </div>
                 <div class="col-md-10 col-md-offset-1">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="card card-plain card-blog" style="border: none">
-                                <div class="card-image">
-                                    <a href="#pablo">
-                                        <img class="img img-raised" src="assets/img/examples/card-blog4.jpg">
+                        @foreach (var project in Model.RandomProjects)
+                        {
+                            <div class="col-md-3">
+                                <div class="card card-plain card-blog" style="border: none">
+                                    <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">
+                                        <div class="card-image">
+                                            <img class="img img-raised" src="@project.ImageUrl">
+                                            <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
+                                        </div>
                                     </a>
-                                    <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog4.jpg&quot;); opacity: 1;"></div>
-                                </div>
 
-                                <div class="card-content">
-                                    <h6 class="category text-info">Enterprise</h6>
-                                    <h4 class="card-title">
-                                        <a href="#pablo">Autodesk looks to future of 3D printing with Project Escher</a>
-                                    </h4>
-                                    <p class="card-description">
-                                        Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
-                                    </p>
+                                    <div class="card-content">
+                                        <h6 class="category text-info">@project.CategoryName</h6>
+                                        <h4 class="card-title">
+                                            <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id">@project.Name</a>
+                                        </h4>
+                                        <p class="card-description">
+                                            @if (project.Description.Length > 100)
+                                            {
+                                                @project.Description.ToString().Substring(0, 77);
+                                            }
+                                            else
+                                            {
+                                                @project.Description.ToString();
+                                            }
+                                            <a asp-controller="Projects" asp-action="ById" asp-route-id="@project.Id" class="text-primary icon-move-right">
+                                                Повече инфо
+                                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                            </a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card card-plain card-blog" style="border: none">
-                                <div class="card-image">
-                                    <a href="#pablo">
-                                        <img class="img img-raised" src="assets/img/examples/blog5.jpg">
-                                    </a>
-                                    <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/blog5.jpg&quot;); opacity: 1;"></div>
-                                </div>
-                                <div class="card-content">
-                                    <h6 class="category text-success">
-                                        Startups
-                                    </h6>
-                                    <h4 class="card-title">
-                                        <a href="#pablo">Lyft launching cross-platform service this week</a>
-                                    </h4>
-                                    <p class="card-description">
-                                        Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card card-plain card-blog" style="border: none">
-                                <div class="card-image">
-                                    <a href="#pablo">
-                                        <img class="img img-raised" src="assets/img/examples/blog7.jpg">
-                                    </a>
-                                    <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/blog7.jpg&quot;); opacity: 1;"></div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h6 class="category text-danger">
-                                        <i class="material-icons">trending_up</i> Enterprise
-                                    </h6>
-                                    <h4 class="card-title">
-                                        <a href="#pablo">6 insights into the French Fashion landscape</a>
-                                    </h4>
-                                    <p class="card-description">
-                                        Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.<a href="#pablo"> Read More </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -95,105 +67,48 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <h2 class="title">Нашите топ дизайнери</h2>
-                    <h5 class="description">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</h5>
+                    <h5 class="description">Най-добрите ни професионалисти с най-добрите си идеи на един клик разстояние.</h5>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/marc.jpg">
-                            </a>
-                        </div>
+                @foreach (var designer in Model.RandomDesigners)
+                {
+                    <div class="col-md-3">
+                        <div class="card card-profile card-plain" style="border: none">
+                            <div class="card-avatar">
+                                <a asp-controller="Designers" asp-action="ById" asp-route-id="@designer.Id">
+                                    @if (designer.ProfilePictureUrl == null)
+                                    {
+                                        <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
+                                    }
+                                </a>
+                            </div>
 
-                        <div class="card-content">
-                            <h4 class="card-title">Alec Thompson</h4>
-                            <h6 class="category text-muted">CEO / Co-Founder</h6>
-
-                            <p class="card-description">
-                                And I love you like Kanye loves Kanye. We need to restart the human foundation.
-                            </p>
-                            <div class="footer">
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-google"><i class="fa fa-google"></i></a>
+                            <div class="card-content">
+                                <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
+                                <h6 class="category text-muted">@designer.PositionName</h6>
+                                @*@if (designer.AboutMe == null)
+                                {
+                                    <p class="card-description">Няма добавена информация засега</p>
+                                }
+                                else
+                                {
+                                    <p class="card-description">@designer.AboutMe</p>
+                                }*@
+                                <div class="footer">
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-behance"><i class="fa fa-behance"></i></a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-linkedin"><i class="fa fa-linkedin-square"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/kendall.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Tania Andrew</h4>
-                            <h6 class="category text-muted">Designer</h6>
-
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation. And I love you like Kanye loves Kanye.
-                            </p>
-                            <div class="footer">
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/christian.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Christian Mike</h4>
-                            <h6 class="category text-muted">Web Developer</h6>
-
-                            <p class="card-description">
-                                I love you like Kanye loves Kanye. Don't be scared of the truth because we need to restart the human foundation.
-                            </p>
-                            <div class="footer">
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/avatar.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Rebecca Stormvile</h4>
-                            <h6 class="category text-muted">Web Developer</h6>
-
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation.
-                            </p>
-                            <div class="footer">
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-google"><i class="fa fa-google"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -203,7 +118,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                    <h2 class="title">Нашите потребители</h2>
+                    <h2 class="title">Отзиви</h2>
 
                 </div>
             </div>
@@ -254,7 +169,7 @@
                         </div>
 
                         <div class="card-content">
-                            <h4 class="card-title">Теодор Янков</h4>
+                            <h4 class="card-title">Теодора Янкова</h4>
                             <h6 class="category text-muted">Design Consult</h6>
                             <h5 class="card-description">
                                 "Като собственик на малък бизнес в сферата на интериорния бизнес, тук намерих място, където научавам нови неща свързани в нашата област."
@@ -272,7 +187,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h2 class="title">Свържи се с НАС</h2>
+                    <h2 class="title">Потърси ни</h2>
                     <h5 class="description">Ако се нуждаеш от повече информация?</h5>
                     <div class="info info-horizontal">
                         <div class="icon icon-primary">
@@ -306,32 +221,32 @@
                     <div class="card card-contact">
                         <form role="form" id="contact-form" method="post">
                             <div class="header header-raised header-primary text-center">
-                                <h4 class="card-title">Contact Us</h4>
+                                <h4 class="card-title">Контакт</h4>
                             </div>
                             <div class="card-content">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">First name</label>
+                                            <label class="control-label">Име</label>
                                             <input type="text" name="name" class="form-control">
                                             <span class="material-input"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Last name</label>
+                                            <label class="control-label">Фамилия</label>
                                             <input type="text" name="name" class="form-control">
                                             <span class="material-input"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Email address</label>
+                                    <label class="control-label">Имейл</label>
                                     <input type="email" name="email" class="form-control">
                                     <span class="material-input"></span>
                                 </div>
                                 <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Your message</label>
+                                    <label class="control-label">Твоето съобщение</label>
                                     <textarea name="message" class="form-control" id="message" rows="6"></textarea>
                                     <span class="material-input"></span>
                                 </div>
@@ -340,13 +255,13 @@
                                     <div class="col-md-6">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span>
-                                                I'm not a robot
+                                                <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"></span>
+                                                Против СПАМ
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                                        <button type="submit" class="btn btn-primary pull-right">Изпрати съобщение</button>
                                     </div>
                                 </div>
                             </div>

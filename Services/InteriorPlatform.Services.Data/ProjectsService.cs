@@ -112,5 +112,15 @@
                 .AllAsNoTracking()
                 .Count();
         }
+
+        public IEnumerable<T> GetRandom<T>(int count)
+        {
+            return this.projectsRepository
+                .AllAsNoTracking()
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .To<T>()
+                .ToList();
+        }
     }
 }

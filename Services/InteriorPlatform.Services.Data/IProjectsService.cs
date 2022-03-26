@@ -12,6 +12,8 @@
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
 
+        IEnumerable<T> GetRandom<T>(int count);
+
         IEnumerable<T> GetAllByUserId<T>(string id);
 
         T GetById<T>(int id);

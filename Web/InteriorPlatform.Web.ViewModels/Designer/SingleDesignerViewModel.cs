@@ -19,6 +19,8 @@
 
         public string TownName { get; set; }
 
+        public string AboutMe { get; set; }
+
         public int ProjectsCount { get; set; }
 
         public DateTime CreatedOn { get; set; }

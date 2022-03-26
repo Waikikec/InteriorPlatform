@@ -7,13 +7,12 @@
     <h3 class="card-title">Всички дизайнери</h3>
     <hr />
     <div class="row">
-        @foreach (var designer in this.Model.Designers)
+        @foreach (var designer in Model.Designers)
         {
             <div class="col-md-3">
                 <div class="card card-profile">
                     <a asp-action="ById" asp-route-id="@designer.Id">
                         <div class="card-image">
-
                             @if (designer.ProfilePictureUrl == null)
                             {
                                 <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />

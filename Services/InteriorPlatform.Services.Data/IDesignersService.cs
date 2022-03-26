@@ -10,6 +10,8 @@
     {
         IEnumerable<T> GetAll<T>();
 
+        IEnumerable<T> GetRandom<T>(int count);
+
         T GetById<T>(string id);
 
         Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user);

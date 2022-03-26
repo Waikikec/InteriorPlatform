@@ -1,5 +1,6 @@
 ﻿namespace InteriorPlatform.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -56,6 +57,16 @@
                 .FirstOrDefault();
 
             return user;
+        }
+
+        public IEnumerable<T> GetRandom<T>(int count)
+        {
+            return this.usersRepository
+                .AllAsNoTracking()
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .To<T>()
+                .ToList();
         }
     }
 }
