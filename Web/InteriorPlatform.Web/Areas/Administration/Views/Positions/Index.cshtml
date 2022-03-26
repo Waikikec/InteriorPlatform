@@ -1,12 +1,12 @@
-﻿@model IEnumerable<InteriorPlatform.Data.Models.Category>
+﻿@model IEnumerable<InteriorPlatform.Data.Models.Position>
 
 @{
-    ViewData["Title"] = "Админ(Категории)";
+    ViewData["Title"] = "Админ(Позиции)";
 }
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <h2>Категории</h2>
+        <h2>Позиции</h2>
         <a type="button" rel="tooltip" class="btn btn-info btn-round" asp-action="Create">
             <i class="fa fa-plus" aria-hidden="true"></i>  Нова Категория
         </a>
@@ -15,21 +15,22 @@
                 <thead>
                     <tr>
                         <th>
-                            Номер
+                            @Html.DisplayNameFor(model => model.Id)
                         </th>
                         <th>
-                            Име
+                            @Html.DisplayNameFor(model => model.Name)
                         </th>
                         <th>
-                            Изтрито
+                            @Html.DisplayNameFor(model => model.IsDeleted) |
+                            @Html.DisplayNameFor(model => model.DeletedOn)
                         </th>
                         <th>
-                            Създадено
+                            @Html.DisplayNameFor(model => model.CreatedOn)
                         </th>
                         <th>
-                            Промяна
+                            @Html.DisplayNameFor(model => model.ModifiedOn)
                         </th>
-                        <th class="text-right">Действия</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

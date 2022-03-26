@@ -8,22 +8,22 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
-    public class CategoriesController : AdministrationController
+    public class PositionsController : AdministrationController
     {
-        private readonly IDeletableEntityRepository<Category> dataRepository;
+        private readonly IDeletableEntityRepository<Position> dataRepository;
 
-        public CategoriesController(IDeletableEntityRepository<Category> dataRepository)
+        public PositionsController(IDeletableEntityRepository<Position> dataRepository)
         {
             this.dataRepository = dataRepository;
         }
 
-        // GET: Administration/Categories
+        // GET: Administration/Positions
         public async Task<IActionResult> Index()
         {
             return this.View(await this.dataRepository.AllWithDeleted().ToListAsync());
         }
 
-        // GET: Administration/Categories/Details/5
+        // GET: Administration/Positions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,42 +31,42 @@
                 return this.NotFound();
             }
 
-            var category = await this.dataRepository
+            var position = await this.dataRepository
                 .All()
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (category == null)
+            if (position == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(position);
         }
 
-        // GET: Administration/Categories/Create
+        // GET: Administration/Positions/Create
         public IActionResult Create()
         {
             return this.View();
         }
 
-        // POST: Administration/Categories/Create
+        // POST: Administration/Positions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Position position)
         {
             if (this.ModelState.IsValid)
             {
-                await this.dataRepository.AddAsync(category);
+                await this.dataRepository.AddAsync(position);
                 await this.dataRepository.SaveChangesAsync();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(category);
+            return this.View(position);
         }
 
-        // GET: Administration/Categories/Edit/5
+        // GET: Administration/Positions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,23 +74,23 @@
                 return this.NotFound();
             }
 
-            var category = await this.dataRepository.All().FirstOrDefaultAsync(x => x.Id == id);
-            if (category == null)
+            var position = await this.dataRepository.All().FirstOrDefaultAsync(m => m.Id == id);
+            if (position == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(position);
         }
 
-        // POST: Administration/Categories/Edit/5
+        // POST: Administration/Positions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Position position)
         {
-            if (id != category.Id)
+            if (id != position.Id)
             {
                 return this.NotFound();
             }
@@ -99,12 +99,12 @@
             {
                 try
                 {
-                    this.dataRepository.Update(category);
+                    this.dataRepository.Update(position);
                     await this.dataRepository.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!this.CategoryExists(category.Id))
+                    if (!this.PositionExists(position.Id))
                     {
                         return this.NotFound();
                     }
@@ -117,10 +117,10 @@
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(category);
+            return this.View(position);
         }
 
-        // GET: Administration/Categories/Delete/5
+        // GET: Administration/Positions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,31 +128,31 @@
                 return this.NotFound();
             }
 
-            var category = await this.dataRepository
+            var position = await this.dataRepository
                 .All()
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (category == null)
+            if (position == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(position);
         }
 
-        // POST: Administration/Categories/Delete/5
+        // POST: Administration/Positions/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await this.dataRepository.All().FirstOrDefaultAsync(x => x.Id == id);
-            this.dataRepository.Delete(category);
+            var position = await this.dataRepository.All().FirstOrDefaultAsync(m => m.Id == id);
+            this.dataRepository.Delete(position);
             await this.dataRepository.SaveChangesAsync();
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool PositionExists(int id)
         {
             return this.dataRepository.All().Any(e => e.Id == id);
         }
