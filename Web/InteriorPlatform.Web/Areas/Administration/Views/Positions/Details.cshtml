@@ -1,48 +1,50 @@
 ﻿@model InteriorPlatform.Data.Models.Position
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Позиция - Детайли";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Position</h4>
+<div class="container">
+    <h2>Детайли</h2>
+
+    <h4>Позиция</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Име
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
+            Изтрит ли е ?
         </dt>
         <dd>
             @Html.DisplayFor(model => model.IsDeleted)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DeletedOn)
+            Изтрит
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DeletedOn)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
+            Създаден
         </dt>
         <dd>
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
+            Променен
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ModifiedOn)
         </dd>
     </dl>
+    <div>
+        <a class="btn btn-info" asp-action="Index">Назад</a>
+        <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
