@@ -30,7 +30,9 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a class="navbar-brand text-dark fw-bolder" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand text-dark fw-bolder" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fa fa-industry" aria-hidden="true"></i> @GlobalConstants.SystemName
+                </a>
 
                 <div class="collapse navbar-collapse" id="my-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -92,7 +94,7 @@
 
     <div class="container-fluid">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
+        <main role="main">
             @this.RenderBody()
         </main>
     </div>
