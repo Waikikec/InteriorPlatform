@@ -104,5 +104,13 @@
 
             return this.RedirectToAction("All");
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.projectsService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }

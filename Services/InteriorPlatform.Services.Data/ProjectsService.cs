@@ -71,6 +71,16 @@
             await this.projectsRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var project = this.projectsRepository
+                .All()
+                .FirstOrDefault(x => x.Id == id);
+
+            this.projectsRepository.Delete(project);
+            await this.projectsRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6)
         {
             var projects = this.projectsRepository
