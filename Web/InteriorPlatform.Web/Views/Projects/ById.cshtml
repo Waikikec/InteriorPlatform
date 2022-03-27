@@ -59,13 +59,15 @@
                 </button>
             </div>
         </div>
+        <!-- Adding Button for EDIT & DELETE -->
         <div class="d-flex justify-content-between">
             <a asp-controller="Projects" asp-action="Edit" asp-route-id="@Model.Project.Id" class="btn btn-success btn-round">
                 <span class="material-icons">edit</span> Редактиране
             </a>
-            <a asp-controller="Projects" asp-action="Delete" asp-route-id="@Model.Project.Id" class="btn btn-danger btn-round">
+            <form method="post" id="deleteProject" asp-action="Delete" asp-route-id="@Model.Project.Id"></form>
+            <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#smallAlertModal">
                 <span class="material-icons">delete</span> Изтриване
-            </a>
+            </button>
         </div>
     </div>
 </div>
@@ -73,7 +75,7 @@
 <!-- AJAX Like Post Querry -->
 <form method="post" id="antiForgeryForm"></form>
 @section Scripts{
-<script>
+    <script>
     $("span[data-like]").each(function (el) {
         $(this).click(function(){
             var value = $(this).attr("data-like");
@@ -96,7 +98,7 @@
             });
         })
     });
-</script>
+    </script>
 }
 
 <!-- Inquire Start Modal -->
@@ -162,3 +164,22 @@
     </div>
 </div>
 <!--  Inquire End Modal -->
+
+<!-- Confirmation Start Modal -->
+<div class="modal fade" id="smallAlertModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-small" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+            </div>
+            <div class="modal-body text-center">
+                <h5>Сигурен ли си, че желаеш това? </h5>
+            </div>
+            <div class="modal-footer justify-content-center row">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Не</button>
+                <button type="button" class="btn btn-success btn-link" onclick="deleteProject.submit()">Да</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation End modal -->
