@@ -1,11 +1,11 @@
-﻿@model InteriorPlatform.Web.ViewModels.Project.CreateProjectInputModel
+﻿@model InteriorPlatform.Web.ViewModels.Project.EditProjectInputModel
 @{
-    this.ViewData["Title"] = "Добави проект";
+    this.ViewData["Title"] = "Редактирай проект";
     var styleItems = this.Model.StylesItems.Select(x => new SelectListItem(x.Value, x.Key));
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <div class="container">
-    <h3 class="card-title">Добави проект:</h3>
+    <h3 class="card-title">Редактирай проект:</h3>
     <hr />
     <div class="row">
         <form method="post" class="form" enctype="multipart/form-data">
@@ -84,10 +84,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <button type="submit" class="btn btn-primary">Създай</button>
-                </div>
             </div>
+            <button type="submit" class="btn btn-primary">Редактирай</button>
         </form>
 
         <h3>Инструкции:</h3>

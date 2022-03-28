@@ -112,5 +112,14 @@
             await this.projectsService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
         }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.projectsService.GetById<EditProjectInputModel>(id);
+            inputModel.CategoriesItems = this.categoriesService.GetCategories();
+            inputModel.StylesItems = this.stylesService.GetStyles();
+            return this.View(inputModel);
+        }
     }
 }

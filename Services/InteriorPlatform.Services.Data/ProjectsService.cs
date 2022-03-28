@@ -41,7 +41,9 @@
 
             foreach (var styleId in model.Styles)
             {
-                var currentStyle = this.stylesRepository.All().FirstOrDefault(x => x.Id == int.Parse(styleId));
+                var currentStyle = this.stylesRepository
+                    .All()
+                    .FirstOrDefault(x => x.Id == int.Parse(styleId));
 
                 project.Styles.Add(currentStyle);
             }
@@ -107,13 +109,13 @@
 
         public T GetById<T>(int id)
         {
-            var recipe = this.projectsRepository
+            var project = this.projectsRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
 
-            return recipe;
+            return project;
         }
 
         public int GetCount()
@@ -131,6 +133,19 @@
                 .Take(count)
                 .To<T>()
                 .ToList();
+        }
+
+        public async Task UpdateAsync(int id, EditProjectInputModel input)
+        {
+            var project = this.projectsRepository
+                .All()
+                .FirstOrDefault(x => x.Id == id);
+
+            project.Name = input.Name;
+            project.CategoryId = input.CategoryId;
+            //TODO....
+
+            await this.projectsRepository.SaveChangesAsync();
         }
     }
 }

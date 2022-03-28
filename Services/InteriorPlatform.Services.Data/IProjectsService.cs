@@ -10,6 +10,8 @@
     {
         Task CreateAsync(CreateProjectInputModel input, ApplicationUser user, string imagePath);
 
+        Task UpdateAsync(int id, EditProjectInputModel input);
+
         Task DeleteAsync(int id);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
