@@ -121,5 +121,20 @@
             inputModel.StylesItems = this.stylesService.GetStyles();
             return this.View(inputModel);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditProjectInputModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                inputModel.CategoriesItems = this.categoriesService.GetCategories();
+                inputModel.StylesItems = this.stylesService.GetStyles();
+                return this.View(inputModel);
+            }
+
+            await this.projectsService.UpdateAsync(id, inputModel);
+            return this.RedirectToAction(nameof(this.ById), new { id });
+        }
     }
 }

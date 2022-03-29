@@ -3,10 +3,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+
     using AutoMapper;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
-    using Microsoft.AspNetCore.Http;
 
     public class EditProjectInputModel : IMapFrom<Project>, IHaveCustomMappings
     {
@@ -34,7 +34,7 @@
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
 
-        public IEnumerable<int> StylesName { get; set; }
+        public IEnumerable<int> Styles { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> StylesItems { get; set; }
 
@@ -43,7 +43,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Project, EditProjectInputModel>()
-                .ForMember(x => x.StylesName, opt => opt.MapFrom(x => x.Styles.Select(t => t.Id).ToList()));
+                .ForMember(x => x.Styles, opt => opt.MapFrom(x => x.Styles.Select(t => t.Id).ToList()));
         }
     }
 }

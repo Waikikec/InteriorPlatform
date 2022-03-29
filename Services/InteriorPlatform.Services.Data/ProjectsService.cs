@@ -142,8 +142,24 @@
                 .FirstOrDefault(x => x.Id == id);
 
             project.Name = input.Name;
+            project.IsRealized = Convert.ToBoolean(input.IsRealized);
+            project.IsPublic = Convert.ToBoolean(input.IsPublic);
+            project.Description = input.Description;
             project.CategoryId = input.CategoryId;
-            //TODO....
+
+            foreach (var style in project.Styles)
+            {
+                project.Styles.Remove(style);
+            }
+
+            foreach (var styleId in input.Styles)
+            {
+                var currentStyle = this.stylesRepository
+                    .All()
+                    .FirstOrDefault(x => x.Id == styleId);
+
+                project.Styles.Add(currentStyle);
+            }
 
             await this.projectsRepository.SaveChangesAsync();
         }

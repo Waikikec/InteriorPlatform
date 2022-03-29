@@ -36,6 +36,8 @@
 
         public DbSet<UserProject> UserProjects { get; set; }
 
+        //public DbSet<ProjectStyle> ProjectStyle { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Style> Styles { get; set; }
