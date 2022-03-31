@@ -138,7 +138,7 @@
         public async Task UpdateAsync(int id, EditProjectInputModel input)
         {
             var project = this.projectsRepository
-                .All()
+                .Get(null, null, "Styles")
                 .FirstOrDefault(x => x.Id == id);
 
             project.Name = input.Name;
@@ -147,10 +147,7 @@
             project.Description = input.Description;
             project.CategoryId = input.CategoryId;
 
-            foreach (var style in project.Styles)
-            {
-                project.Styles.Remove(style);
-            }
+            project.Styles.Clear();
 
             foreach (var styleId in input.Styles)
             {
