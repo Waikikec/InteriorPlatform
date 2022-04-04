@@ -1,0 +1,97 @@
+﻿@using InteriorPlatform.Common
+@{
+    this.ViewData["Title"] = "Контакти";
+}
+
+<!-- GET IN TOUCH -->
+<div class="main main-raised m-0">
+    <div class="contactus-1 section-image" style="background-image: url('./assets/img/examples/city.jpg')">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-5">
+                    <h2 class="title">Потърси ни</h2>
+                    <h5 class="description">Ако се нуждаеш от повече информация?</h5>
+                    <div class="info info-horizontal">
+                        <div class="icon icon-primary">
+                            <i class="material-icons">pin_drop</i>
+                        </div>
+                        <div class="description">
+                            <h4 class="info-title">Посети ни в офис</h4>
+                            <p>
+                                Бул. Александър Стамболийски, nr. 8,<br>
+                                1000 София,<br>
+                                България
+                            </p>
+                        </div>
+                    </div>
+                    <div class="info info-horizontal">
+                        <div class="icon icon-primary">
+                            <i class="material-icons">phone</i>
+                        </div>
+                        <div class="description">
+                            <h4 class="info-title">... или просто се обади</h4>
+                            <p>
+                                Мартин Янков<br>
+                                +359 886 188 093<br>
+                                Понеделник - Петък, 8:00-22:00
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="card card-contact">
+                        <form role="form" id="contact-form" method="post">
+                            <div class="header header-raised header-primary text-center">
+                                <h4 class="card-title">Контакт</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Име</label>
+                                            <input type="text" name="name" class="form-control">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Фамилия</label>
+                                            <input type="text" name="name" class="form-control">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Имейл</label>
+                                    <input type="email" name="email" class="form-control">
+                                    <span class="material-input"></span>
+                                </div>
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Твоето съобщение</label>
+                                    <textarea name="message" class="form-control" id="message" rows="6"></textarea>
+                                    <span class="material-input"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"></span>
+                                                Потвърждавам
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary pull-right">Изпрати съобщение</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

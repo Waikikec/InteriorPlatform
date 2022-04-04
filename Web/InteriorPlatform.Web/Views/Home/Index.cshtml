@@ -61,6 +61,82 @@
         </div>
     </div>
 
+    <!-- TESTIMONIALS -->
+    <div class="section-image pb-5" style="background-image: url('./assets/img/city.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2 class="title">Отзиви</h2>
+                    <h5 class="description">Нуждаеш се от повече информация? Прочети какво споделят хората относно услугите на нашия сайт.</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-testimonial">
+                        <div class="icon">
+                            <i class="material-icons">format_quote</i>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-description">
+                                "Дълго време търсех място, където мога да споделя проектите си и да споделя идеите си с хора, с които имаме общи интереси."
+                            </h5>
+                        </div>
+
+                        <div class="footer">
+                            <h4 class="card-title">Димитър Стоянов</h4>
+                            <h6 class="category">Софтуерен Архитект</h6>
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" src="assets/img/faces/card-profile1-square.jpg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-testimonial">
+                        <div class="icon">
+                            <i class="material-icons">format_quote</i>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-description">
+                                "Тук намерих достатъчно проекти и дизайнери, с които се свързах и разговарях относно моят апартамент. Намерих професионално отношение и бърз отговор на всеки от моите въпроси"
+                            </h5>
+                        </div>
+
+                        <div class="footer">
+                            <h4 class="card-title">Яна Караманджукова</h4>
+                            <h6 class="category">Pixel Pool</h6>
+                            <div class="card-avatar">
+                                <img class="img" src="assets/img/faces/card-profile4-square.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-testimonial">
+                        <div class="icon">
+                            <i class="material-icons">format_quote</i>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-description">
+                                "Като собственик на малък бизнес в сферата на интериорния бизнес, тук намерих място, където научавам нови неща свързани в нашата област."
+                            </h5>
+                        </div>
+
+                        <div class="footer">
+                            <h4 class="card-title">Кремена Янкова</h4>
+                            <h6 class="category">Дизайн Консулт</h6>
+                            <div class="card-avatar">
+                                <img class="img" src="~/assets/img/faces/card-profile6-square.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Random Designers -->
     <div class="container-fluid section-white">
         <div class="container">
@@ -92,14 +168,6 @@
                             <div class="card-content">
                                 <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
                                 <h6 class="category text-muted">@designer.PositionName</h6>
-                                @*@if (designer.AboutMe == null)
-                                {
-                                    <p class="card-description">Няма добавена информация засега</p>
-                                }
-                                else
-                                {
-                                    <p class="card-description">@designer.AboutMe</p>
-                                }*@
                                 <div class="footer">
                                     <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
                                     <a href="#pablo" class="btn btn-just-icon btn-simple btn-behance"><i class="fa fa-behance"></i></a>
@@ -109,166 +177,6 @@
                         </div>
                     </div>
                 }
-            </div>
-        </div>
-    </div>
-
-    <!-- TESTIMONIALS -->
-    <div class="container-fluid section-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <h2 class="title">Отзиви</h2>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-testimonial card-plain" style="border: none">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/card-profile1-square.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Димитър Стоянов</h4>
-                            <h6 class="category text-muted">Software Architect</h6>
-                            <h5 class="card-description">
-                                "Тук намерих достатъчно проекти и дизайнери, с които се свързах и разговарях относно моят апартамент. Намерих професионално отношение и бърз отговор на всеки от моите въпроси"
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-testimonial card-plain" style="border: none">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/card-profile4-square.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Яна Караманджукова</h4>
-                            <h6 class="category text-muted">PixelPool</h6>
-                            <h5 class="card-description">
-                                "Дълго време търсех място, където мога да споделя проектите си и да споделя идеите си с хора, с които имаме общи интереси."
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-testimonial card-plain" style="border: none">
-                        <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="assets/img/faces/card-profile6-square.jpg">
-                            </a>
-                        </div>
-
-                        <div class="card-content">
-                            <h4 class="card-title">Теодора Янкова</h4>
-                            <h6 class="category text-muted">Design Consult</h6>
-                            <h5 class="card-description">
-                                "Като собственик на малък бизнес в сферата на интериорния бизнес, тук намерих място, където научавам нови неща свързани в нашата област."
-                            </h5>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- GET IN TOUCH -->
-    <div class="contactus-1 section-image m-0" style="background-image: url('assets/img/examples/city.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <h2 class="title">Потърси ни</h2>
-                    <h5 class="description">Ако се нуждаеш от повече информация?</h5>
-                    <div class="info info-horizontal">
-                        <div class="icon icon-primary">
-                            <i class="material-icons">pin_drop</i>
-                        </div>
-                        <div class="description">
-                            <h4 class="info-title">Посети ни в офис</h4>
-                            <p>
-                                Бул. Александър Стамболийски, nr. 8,<br>
-                                1000 София,<br>
-                                България
-                            </p>
-                        </div>
-                    </div>
-                    <div class="info info-horizontal">
-                        <div class="icon icon-primary">
-                            <i class="material-icons">phone</i>
-                        </div>
-                        <div class="description">
-                            <h4 class="info-title">... или просто се обади</h4>
-                            <p>
-                                Мартин Янков<br>
-                                +359 886 188 093<br>
-                                Понеделник - Петък, 8:00-22:00
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-5 col-md-offset-2">
-                    <div class="card card-contact">
-                        <form role="form" id="contact-form" method="post">
-                            <div class="header header-raised header-primary text-center">
-                                <h4 class="card-title">Контакт</h4>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Име</label>
-                                            <input type="text" name="name" class="form-control">
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Фамилия</label>
-                                            <input type="text" name="name" class="form-control">
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Имейл</label>
-                                    <input type="email" name="email" class="form-control">
-                                    <span class="material-input"></span>
-                                </div>
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Твоето съобщение</label>
-                                    <textarea name="message" class="form-control" id="message" rows="6"></textarea>
-                                    <span class="material-input"></span>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"></span>
-                                                Потвърждавам
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary pull-right">Изпрати съобщение</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -39,6 +39,7 @@
                         <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Начало</a></li>
                         <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="All">Проекти</a></li>
                         <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Designers" asp-action="All">Дизайнери</a></li>
+                        <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Contacts" asp-action="Index">Контакти</a></li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
                             <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="Create">Създай</a></li>
@@ -175,7 +176,7 @@
     <script src="~/assets/js/jasny-bootstrap.min.js"></script>
 
     <!-- Plugin For Google Maps -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm-RDiTEcNyDtr3KM7R-fxxD0QEwEjiyI&callback=initMap&v=weekly"></script>
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="~/assets/js/material-kit.js?v=1.2.1" type="text/javascript"></script>
