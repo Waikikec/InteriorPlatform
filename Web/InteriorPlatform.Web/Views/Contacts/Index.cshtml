@@ -1,4 +1,7 @@
 ﻿@using InteriorPlatform.Common
+
+@model InteriorPlatform.Web.ViewModels.Contacts.ContactUsInputModel
+
 @{
     this.ViewData["Title"] = "Контакти";
 }
@@ -42,7 +45,9 @@
                 </div>
                 <div class="col-md-5 col-md-offset-2">
                     <div class="card card-contact">
-                        <form role="form" id="contact-form" method="post">
+                        <!-- FORM EMAIL SENDER -->
+                        <form role="form" id="contact-form" method="post" asp-action="Index">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="header header-raised header-primary text-center">
                                 <h4 class="card-title">Контакт</h4>
                             </div>
@@ -50,28 +55,33 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Име</label>
-                                            <input type="text" name="name" class="form-control">
-                                            <span class="material-input"></span>
+                                            <label asp-for="FirstName" class="control-label">Име</label>
+                                            <input asp-for="FirstName" type="text" class="form-control">
+                                            <span asp-validation-for="FirstName" class="material-input"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Фамилия</label>
-                                            <input type="text" name="name" class="form-control">
-                                            <span class="material-input"></span>
+                                            <label asp-for="LastName" class="control-label">Фамилия</label>
+                                            <input asp-for="LastName" type="text" class="form-control">
+                                            <span asp-validation-for="LastName" class="material-input"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Имейл</label>
-                                    <input type="email" name="email" class="form-control">
-                                    <span class="material-input"></span>
+                                    <label asp-for="Email" class="control-label">Имейл</label>
+                                    <input asp-for="Email" type="email" class="form-control">
+                                    <span asp-validation-for="Email" class="material-input"></span>
                                 </div>
                                 <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Твоето съобщение</label>
-                                    <textarea name="message" class="form-control" id="message" rows="6"></textarea>
-                                    <span class="material-input"></span>
+                                    <label asp-for="Subject" class="control-label">Относно</label>
+                                    <input asp-for="Subject" type="text" class="form-control">
+                                    <span asp-validation-for="Subject" class="material-input"></span>
+                                </div>
+                                <div class="form-group label-floating is-empty">
+                                    <label asp-for="Message" class="control-label">Твоето съобщение</label>
+                                    <textarea asp-for="Message" class="form-control" id="message" rows="6"></textarea>
+                                    <span asp-validation-for="Message" class="material-input"></span>
                                 </div>
 
                                 <div class="row">
@@ -95,3 +105,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -55,7 +55,6 @@
 
         public IActionResult ById(int id)
         {
-            // var project = this.projectsService.GetById<ByIdProjectViewModel>(id);
             var viewModel = new InquireAssemblyViewModel
             {
                 Project = this.projectsService.GetById<ByIdProjectViewModel>(id),

@@ -15,5 +15,16 @@
         {
             return Task.CompletedTask;
         }
-    }
+
+        public Task SendPlainEmailAsync(
+            string from,
+            string fromName,
+            string to,
+            string subject,
+            string content,
+            IEnumerable<EmailAttachment> attachments = null)
+            {
+                return Task.CompletedTask;
+            }
+        }
 }
