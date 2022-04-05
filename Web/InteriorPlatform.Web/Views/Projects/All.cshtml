@@ -1,11 +1,11 @@
 ﻿@model InteriorPlatform.Web.ViewModels.Project.AllProjectsViewModel
 @{
-    this.ViewData["Title"] = "All Projects";
+    this.ViewData["Title"] = "Всички проект";
 }
 
-@if (this.TempData.ContainsKey("Message"))
+@if (this.TempData.ContainsKey("CreateProjectSuccess"))
 {
-    <div class="alert alert-success">@this.TempData["Message"]</div>
+    <div class="alert alert-success">@this.TempData["CreateProjectSuccess"]</div>
 }
 
 <div class="container">

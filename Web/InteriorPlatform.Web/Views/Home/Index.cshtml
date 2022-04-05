@@ -1,7 +1,12 @@
 ﻿@using InteriorPlatform.Common
 @model InteriorPlatform.Web.ViewModels.Home.HomePageViewModel
 @{
-    this.ViewData["Title"] = "Дизайн Фаб";
+    this.ViewData["Title"] = "FabDesign";
+}
+
+@if (this.TempData.ContainsKey("MessageSentSuccessfully"))
+{
+    <div class="alert alert-success">@this.TempData["MessageSentSuccessfully"]</div>
 }
 
 <div class="text-center">

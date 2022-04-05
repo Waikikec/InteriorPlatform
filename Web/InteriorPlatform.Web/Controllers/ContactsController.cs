@@ -37,7 +37,7 @@
 
             await this.emailSender.SendPlainEmailAsync(email, name, FabDesignSupportEmail, subject, content, null);
 
-            this.TempData["Message"] = MessageSentSuccessfully;
+            this.TempData["MessageSentSuccessfully"] = MessageSentSuccessfully;
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }

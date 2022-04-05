@@ -11,6 +11,8 @@
         // Email
         public const string FabDesignSupportEmail = "martin.d.yankov@gmail.com";
 
-        public const string MessageSentSuccessfully = "Thank you! Your message was sent. We'll get in touch soon.";
+        public const string MessageSentSuccessfully = "Благодаря! Вашето съобщение беше изпратено успешно!";
+
+        public const string ProjectCreatedSuccessfully = "Благодаря! Вашият проект беше създаден успешно!";
     }
 }

@@ -12,6 +12,8 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static InteriorPlatform.Common.GlobalConstants;
+
     public class ProjectsController : Controller
     {
         private readonly ICategoriesService categoriesService;
@@ -99,7 +101,7 @@
                 return this.View(model);
             }
 
-            this.TempData["Message"] = "Project has been created successfully!";
+            this.TempData["CreateProjectSuccess"] = ProjectCreatedSuccessfully;
 
             return this.RedirectToAction("All");
         }
