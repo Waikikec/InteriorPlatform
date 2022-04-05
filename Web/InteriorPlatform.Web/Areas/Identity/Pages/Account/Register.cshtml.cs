@@ -115,15 +115,13 @@
                     Email = this.Input.Email.Trim(),
                     FirstName = this.Input.FirstName.Trim(),
                     LastName = this.Input.LastName.Trim(),
-                    UserName = this.Input.FirstName + " " + this.Input.LastName,
+                    UserName = this.Input.FirstName.Trim() + " " + this.Input.LastName.Trim(),
                     PasswordHash = this.Input.Password,
                     Company = new Company { Name = this.Input.Company },
                     TownId = this.Input.TownId,
                     PositionId = this.Input.PositionId,
                     PhoneNumber = this.Input.PhoneNumber.Trim(),
                 };
-
-
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
@@ -151,6 +149,7 @@
                         return this.LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     this.ModelState.AddModelError(string.Empty, error.Description);
