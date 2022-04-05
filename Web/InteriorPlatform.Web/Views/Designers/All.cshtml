@@ -13,13 +13,13 @@
                 <div class="card card-profile">
                     <a asp-action="ById" asp-route-id="@designer.Id">
                         <div class="card-image">
-                            @if (designer.ProfilePictureUrl == null)
+                            @if (designer.ProfilePicture == null)
                             {
                                 <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
                             }
                             else
                             {
-                                <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
+                                <img class="img" src="@designer.ProfilePicture" alt="@designer.Id" />
                             }
                         </div>
                     </a>

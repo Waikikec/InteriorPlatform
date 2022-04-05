@@ -13,7 +13,7 @@
 
         public string LastName { get; set; }
 
-        public string ProfilePictureUrl { get; set; }
+        public CloudImage ProfilePicture { get; set; }
 
         public string PositionName { get; set; }
 

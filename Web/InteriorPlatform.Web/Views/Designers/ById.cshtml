@@ -18,9 +18,14 @@
             <!-- Profile Card -->
             <div class="card card-profile">
                 <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" src="~/assets/img/faces/marc.jpg" />
-                    </a>
+                    @if (Model.Designer.ProfilePicture == null)
+                    {
+                        <img class="img" src="~/assets/img/placeholder.jpg" alt="@Model.Designer.Id" />
+                    }
+                    else
+                    {
+                        <img class="img" src="@Model.Designer.ProfilePicture" alt="@Model.Designer.Id" />
+                    }
                 </div>
                 <div class="card-content">
                     <h4 class="card-title">@Model.Designer.FirstName @Model.Designer.LastName</h4>
@@ -64,7 +69,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#media" role="tab" data-toggle="tab">
+                            <a href="#settings" role="tab" data-toggle="tab">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                 Настройки
                             </a>
@@ -78,11 +83,10 @@
         <div class="col-md-9">
             <!-- Content -->
             <div class="tab-content">
+                <!-- DESIGNER PROJECTS TAB -->
                 <div class="tab-pane active" id="work">
                     <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
-                        <!-- add sizing element for columnWidth -->
                         <div class="grid-sizer"></div>
-                        <!-- items use Bootstrap .col- classes -->
                         @foreach (var project in Model.Projects)
                         {
                             <div class="grid-item col-md-3 mt-5">
@@ -102,19 +106,17 @@
                     </div>
                 </div>
 
-                <!-- INQUIRES TAB -->
+                <!-- DESIGNER INQUIRES TAB -->
                 <div class="tab-pane" id="inquires">
                     <div class="col-md-6">
                         @if (Model.Inquires.Count() == 0)
                         {
                             <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                            <h4 class="panel-title">
-                                                Все още нямате изпратени запитвания
-                                            </h4>
-                                        </a>
-                                    </div>
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        Все още нямате изпратени запитвания
+                                    </h4>
+                                </div>
                             </div>
                         }
                         else
@@ -148,6 +150,34 @@
                             }
                         }
                     </div>
+                </div>
+
+                <!-- DESIGNER SETTINGS TAB -->
+                <div class="tab-pane" id="settings">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">Профилна снимка</h4>
+                        </div>
+                    </div>
+                    <form method="post" class="form" enctype="multipart/form-data">
+                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail img-raised">
+                                <img src="~/assets/img/image_placeholder.jpg" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail img-raised" style=""></div>
+                            <div>
+                                <span class="btn btn-raised btn-round btn-default btn-file">
+                                    <span class="fileinput-new">Избери снимка</span>
+                                    <span class="fileinput-exists">Промени</span>
+                                    <input type="hidden" value="" name="..."><input type="file" name="">
+                                </span>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Премахни</a>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

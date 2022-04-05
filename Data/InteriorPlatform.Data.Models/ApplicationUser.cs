@@ -27,6 +27,8 @@ namespace InteriorPlatform.Data.Models
 
         public int ProjectsCount => this.UserProjects.Count;
 
+        public CloudImage ProfilePicture { get; set; }
+
         // Relationships
         [ForeignKey(nameof(Town))]
         public int TownId { get; set; }

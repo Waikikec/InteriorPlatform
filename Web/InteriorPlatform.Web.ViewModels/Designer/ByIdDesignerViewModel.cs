@@ -2,11 +2,14 @@
 {
     using System.Collections.Generic;
 
+    using InteriorPlatform.Web.ViewModels.Image;
     using InteriorPlatform.Web.ViewModels.Inquire;
     using InteriorPlatform.Web.ViewModels.Project;
 
     public class ByIdDesignerViewModel
     {
+        public CloudinaryImageInputModel ImageToUpload { get; set; }
+
         public SingleDesignerViewModel Designer { get; set; }
 
         public IEnumerable<SingleProjectViewModel> Projects { get; set; }

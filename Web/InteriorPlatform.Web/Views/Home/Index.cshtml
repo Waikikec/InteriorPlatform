@@ -66,6 +66,48 @@
         </div>
     </div>
 
+    <!-- Random Designers -->
+    <div class="container-fluid section-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2 class="title">Нашите топ дизайнери</h2>
+                    <h5 class="description">Най-добрите ни професионалисти с най-добрите си идеи на един клик разстояние.</h5>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var designer in Model.RandomDesigners)
+                {
+                    <div class="col-md-3">
+                        <div class="card card-profile card-plain" style="border: none">
+                            <div class="card-avatar">
+                                <a asp-controller="Designers" asp-action="ById" asp-route-id="@designer.Id">
+                                    @if (designer.ProfilePicture == null)
+                                    {
+                                        <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img" src="@designer.ProfilePicture" alt="@designer.Id" />
+                                    }
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
+                                <h6 class="category text-muted">@designer.PositionName</h6>
+                                <div class="footer">
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-behance"><i class="fa fa-behance"></i></a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-linkedin"><i class="fa fa-linkedin-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
     <!-- TESTIMONIALS -->
     <div class="section-image pb-5" style="background-image: url('./assets/img/city.jpg')">
         <div class="container">
@@ -138,50 +180,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Random Designers -->
-    <div class="container-fluid section-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <h2 class="title">Нашите топ дизайнери</h2>
-                    <h5 class="description">Най-добрите ни професионалисти с най-добрите си идеи на един клик разстояние.</h5>
-                </div>
-            </div>
-
-            <div class="row">
-                @foreach (var designer in Model.RandomDesigners)
-                {
-                    <div class="col-md-3">
-                        <div class="card card-profile card-plain" style="border: none">
-                            <div class="card-avatar">
-                                <a asp-controller="Designers" asp-action="ById" asp-route-id="@designer.Id">
-                                    @if (designer.ProfilePictureUrl == null)
-                                    {
-                                        <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
-                                    }
-                                    else
-                                    {
-                                        <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
-                                    }
-                                </a>
-                            </div>
-
-                            <div class="card-content">
-                                <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
-                                <h6 class="category text-muted">@designer.PositionName</h6>
-                                <div class="footer">
-                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-behance"><i class="fa fa-behance"></i></a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-simple btn-linkedin"><i class="fa fa-linkedin-square"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
             </div>
         </div>
     </div>

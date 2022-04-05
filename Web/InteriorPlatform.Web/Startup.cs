@@ -2,12 +2,14 @@
 {
     using System.Reflection;
 
+    using CloudinaryDotNet;
     using InteriorPlatform.Data;
     using InteriorPlatform.Data.Common;
     using InteriorPlatform.Data.Common.Repositories;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Data.Repositories;
     using InteriorPlatform.Data.Seeding;
+    using InteriorPlatform.Services;
     using InteriorPlatform.Services.Data;
     using InteriorPlatform.Services.Mapping;
     using InteriorPlatform.Services.Messaging;
@@ -62,6 +64,15 @@
             });
             services.AddSingleton(this.configuration);
 
+            // Cloudinary
+            var account = new CloudinaryDotNet.Account(
+                this.configuration["Cloudinary:CloudName"],
+                this.configuration["Cloudinary:ApiKey"],
+                this.configuration["Cloudinary:ApiSecret"]);
+
+            var cloudUtility = new Cloudinary(account);
+            services.AddSingleton(cloudUtility);
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -76,6 +87,9 @@
             services.AddTransient<IDesignersService, DesignersService>();
             services.AddTransient<IInquiresService, InquiresService>();
             services.AddTransient<ILikesService, LikesService>();
+
+            services.AddTransient<IImageDbService, ImageDbService>();
+            services.AddTransient<ICloudImageService, CloudImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,11 +126,11 @@
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-                    {
-                        endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapRazorPages();
-                    });
+            {
+                endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

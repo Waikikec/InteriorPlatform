@@ -21,9 +21,18 @@
     <div class="col-md-3">
         <div class="card card-profile">
             <div class="card-avatar">
-                <a href="#pablo">
-                    <img class="img" src="~/assets/img/faces/marc.jpg" />
-                </a>
+                @*<a asp-action="ById" asp-route-id="@designer.Id">
+                    <div class="card-image">
+                        @if (Model.Project.AddedByUser.ProfilePictureUrl == null)
+                        {
+                            <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
+                        }
+                        else
+                        {
+                            <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
+                        }
+                    </div>
+                </a>*@
             </div>
             <div class="card-content">
                 <h4 class="card-title">@Model.Project.AddedByUser.FirstName @Model.Project.AddedByUser.LastName</h4>
