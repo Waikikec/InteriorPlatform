@@ -14,6 +14,8 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static InteriorPlatform.Common.GlobalConstants;
+
     public class DesignersController : Controller
     {
         private readonly IDesignersService designersService;
@@ -81,7 +83,7 @@
                 return this.View(model);
             }
 
-            this.TempData["Message"] = "Inquire has been sent successfully!";
+            this.TempData["InquireCreatedSuccessfully"] = InquireCreatedSuccessfully;
 
             return this.RedirectToAction("All", "Designers");
         }

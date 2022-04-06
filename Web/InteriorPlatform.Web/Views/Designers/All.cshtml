@@ -1,6 +1,11 @@
 ﻿@model InteriorPlatform.Web.ViewModels.Designer.AllDesignersViewModel
 @{
-    this.ViewData["Title"] = "All Designers";
+    this.ViewData["Title"] = "Всички дизайнери";
+}
+
+@if (this.TempData.ContainsKey("InquireCreatedSuccessfully"))
+{
+    <div class="alert alert-success">@this.TempData["InquireCreatedSuccessfully"]</div>
 }
 
 <div class="container">
