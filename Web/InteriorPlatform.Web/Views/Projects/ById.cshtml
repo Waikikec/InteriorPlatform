@@ -2,7 +2,7 @@
 @{
     this.ViewData["Title"] = Model.Project.Id;
 }
-<div class="container-fluid">
+<div class="container-fluid p-3">
     <div class="col-md-9 p-0">
         <!-- Masonry Gallery -->
         <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
@@ -21,18 +21,16 @@
     <div class="col-md-3">
         <div class="card card-profile">
             <div class="card-avatar">
-                @*<a asp-action="ById" asp-route-id="@designer.Id">
-                    <div class="card-image">
-                        @if (Model.Project.AddedByUser.ProfilePictureUrl == null)
+                <a asp-controller="Designers" asp-action="ById" asp-route-id="@Model.Project.AddedByUser.Id">
+                        @if (Model.Designer.ProfilePicture == null)
                         {
-                            <img class="img" src="~/assets/img/placeholder.jpg" alt="@designer.Id" />
+                            <img class="img" src="~/assets/img/placeholder.jpg" alt="@Model.Designer.Id" />
                         }
                         else
                         {
-                            <img class="img" src="@designer.ProfilePictureUrl" alt="@designer.Id" />
+                            <img class="img" src="@Model.Designer.ProfilePicture.PictureUrl" alt="@Model.Designer.Id" />
                         }
-                    </div>
-                </a>*@
+                </a>
             </div>
             <div class="card-content">
                 <h4 class="card-title">@Model.Project.AddedByUser.FirstName @Model.Project.AddedByUser.LastName</h4>

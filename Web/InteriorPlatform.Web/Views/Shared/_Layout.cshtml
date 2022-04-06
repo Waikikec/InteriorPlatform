@@ -1,4 +1,9 @@
 ﻿@using InteriorPlatform.Common
+@using InteriorPlatform.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,18 +46,35 @@
                         <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Contacts" asp-action="Index">Контакти</a></li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
-                            <li><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="Create">Създай</a></li>
+                            Task<ApplicationUser> GetCurrentUserAsync() => UserManager.GetUserAsync(User);
+                            var user = await GetCurrentUserAsync();
+
+                            <li>
+                                <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Projects" asp-action="Create">Създай</a>
+                            </li>
                             <li class="nav-item">
                                 <a href="#pablo" class="btn btn-rose btn-raised btn-fab btn-fab-mini" data-toggle="dropdown">
                                     <i class="material-icons">email</i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#pablo" class="profile-photo" data-toggle="dropdown">
-                                    <div class="profile-photo-small">
-                                        <img src="~/assets/img/faces/avatar.jpg" alt="Circle Image" class="img-circle img-responsive">
-                                    </div>
-                                </a>
+                                @if (user.ProfilePicture == null)
+                                {
+                                    <a asp-controller="Designers" asp-action="ById" asp-route-id="@user.Id" class="profile-photo" data-toggle="dropdown">
+                                        <div class="profile-photo-small">
+                                            <img class="img-circle img-responsive" src="~/assets/img/placeholder.jpg" alt="@user.Id" />
+                                        </div>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Designers" asp-action="ById" asp-route-id="@user.Id" class="profile-photo" data-toggle="dropdown">
+                                        <div class="profile-photo-small">
+                                            <img class="img-circle img-responsive" src="@user.ProfilePicture.PictureUrl" alt="@user.Id" />
+                                        </div>
+                                    </a>
+                                    <img class="img" src="@user.ProfilePicture.PictureUrl" alt="@user.Id" />
+                                }
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="#pablo"><span class="material-icons">person</span> Моят профил</a>

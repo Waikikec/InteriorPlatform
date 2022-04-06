@@ -1,7 +1,8 @@
 ﻿@model InteriorPlatform.Web.ViewModels.Designer.ByIdDesignerViewModel
 @{
-    this.ViewData["Title"] = @Model.Designer.FirstName + " " + @Model.Designer.LastName;
+    this.ViewData["Title"] = "Дизайнер";
 }
+
 <div class="container-fluid">
     <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="container">
@@ -24,7 +25,7 @@
                     }
                     else
                     {
-                        <img class="img" src="@Model.Designer.ProfilePicture" alt="@Model.Designer.Id" />
+                        <img class="img" src="@Model.Designer.ProfilePicture.PictureUrl" alt="@Model.Designer.Id" />
                     }
                 </div>
                 <div class="card-content">
@@ -159,18 +160,21 @@
                             <h4 class="panel-title">Профилна снимка</h4>
                         </div>
                     </div>
-                    <form method="post" class="form" enctype="multipart/form-data">
+                    <form method="post" class="form" enctype="multipart/form-data" asp-controller="Designers" asp-action="Upload">
                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                             <div class="fileinput-new thumbnail img-raised">
                                 <img src="~/assets/img/image_placeholder.jpg" alt="...">
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail img-raised" style=""></div>
                             <div>
+                                <label asp-for="@Model.CloudinaryImage.Image">Снимкa</label>
                                 <span class="btn btn-raised btn-round btn-default btn-file">
                                     <span class="fileinput-new">Избери снимка</span>
                                     <span class="fileinput-exists">Промени</span>
-                                    <input type="hidden" value="" name="..."><input type="file" name="">
+                                    <input asp-for="@Model.CloudinaryImage.Image" type="hidden" value="" name="Image">
+                                    <input asp-for="@Model.CloudinaryImage.Image" type="file" name="Image">
                                 </span>
+                                <span asp-validation-for="@Model.CloudinaryImage.Image" class="text-danger"></span>
                                 <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Премахни</a>
                             </div>
                             <div>

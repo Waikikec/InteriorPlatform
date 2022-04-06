@@ -2,9 +2,11 @@
 {
     using System.Threading.Tasks;
 
+    using InteriorPlatform.Data.Models;
+
     public interface IImageDbService
     {
-        Task<int> WriteToDatabaseAsync(string imageUrl, string imagePublicId);
+        Task<int> WriteToDatabaseAsync(CloudImage image);
 
         string GetPublicId(int id);
     }

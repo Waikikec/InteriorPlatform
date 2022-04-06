@@ -111,7 +111,7 @@
 
             user.ProfilePicture = newImage;
 
-            await this.imageDbService.WriteToDatabaseAsync(imageUrl, imagePublicId);
+            await this.imageDbService.WriteToDatabaseAsync(newImage);
 
             return this.View();
         }

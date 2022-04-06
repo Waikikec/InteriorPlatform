@@ -8,7 +8,7 @@
 
     public class ByIdDesignerViewModel
     {
-        public CloudinaryImageInputModel ImageToUpload { get; set; }
+        public CloudinaryImageInputModel CloudinaryImage { get; set; }
 
         public SingleDesignerViewModel Designer { get; set; }
 

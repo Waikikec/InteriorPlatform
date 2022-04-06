@@ -25,14 +25,8 @@
             return image.PicturePublicId;
         }
 
-        public async Task<int> WriteToDatabaseAsync(string imageUrl, string imagePublicId)
+        public async Task<int> WriteToDatabaseAsync(CloudImage image)
         {
-            var image = new CloudImage
-            {
-                PictureUrl = imageUrl,
-                PicturePublicId = imagePublicId,
-            };
-
             await this.imagesRepository.AddAsync(image);
             await this.imagesRepository.SaveChangesAsync();
 

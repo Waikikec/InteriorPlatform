@@ -5,6 +5,7 @@
 
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Data;
+    using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Inquire;
     using InteriorPlatform.Web.ViewModels.Project;
     using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,7 @@
         private readonly ICategoriesService categoriesService;
         private readonly IStylesService stylesService;
         private readonly IProjectsService projectsService;
+        private readonly IDesignersService designersService;
         private readonly IWebHostEnvironment environment;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -26,12 +28,14 @@
             ICategoriesService categoriesService,
             IStylesService stylesService,
             IProjectsService projectsService,
+            IDesignersService designersService,
             IWebHostEnvironment environment,
             UserManager<ApplicationUser> userManager)
         {
             this.categoriesService = categoriesService;
             this.stylesService = stylesService;
             this.projectsService = projectsService;
+            this.designersService = designersService;
             this.environment = environment;
             this.userManager = userManager;
         }
@@ -55,11 +59,14 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
+            var user = await this.userManager.GetUserAsync(this.User);
+
             var viewModel = new InquireAssemblyViewModel
             {
                 Project = this.projectsService.GetById<ByIdProjectViewModel>(id),
+                Designer = this.designersService.GetById<SingleDesignerViewModel>(user.Id),
             };
 
             return this.View(viewModel);
