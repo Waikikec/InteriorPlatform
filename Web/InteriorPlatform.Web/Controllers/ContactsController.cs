@@ -19,6 +19,7 @@
 
         public IActionResult Index()
         {
+            this.ViewData["MyTomTomKey"] = MyTomTomKey;
             return this.View();
         }
 

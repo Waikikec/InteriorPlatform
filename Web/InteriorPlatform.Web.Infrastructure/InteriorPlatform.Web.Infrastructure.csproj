@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\InteriorPlatform.Data.Models\InteriorPlatform.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

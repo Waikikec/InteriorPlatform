@@ -4,9 +4,13 @@
     {
         public const string SystemName = "FAB Дизайн";
 
+        // Roles
         public const string AdministratorRoleName = "Administrator";
 
-        public const string GoogleMapsApiKey = "AIzaSyCm-RDiTEcNyDtr3KM7R-fxxD0QEwEjiyI";
+        public const string OwnerRoleName = "Owner";
+
+        // API Keys
+        public const string MyTomTomKey = "XWHQjROFODYbIYbfZzQhYrxXOtVhAbKr";
 
         // Email
         public const string FabDesignSupportEmail = "martin.d.yankov@gmail.com";

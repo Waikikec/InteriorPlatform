@@ -115,7 +115,7 @@
 
             await this.imageDbService.WriteToDatabaseAsync(newImage);
 
-            return this.View();
+            return this.RedirectToAction("All", "Designers");
         }
     }
 }
