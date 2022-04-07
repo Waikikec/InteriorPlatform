@@ -59,14 +59,11 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ById(int id)
+        public IActionResult ById(int id)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-
             var viewModel = new InquireAssemblyViewModel
             {
                 Project = this.projectsService.GetById<ByIdProjectViewModel>(id),
-                Designer = this.designersService.GetById<SingleDesignerViewModel>(user.Id),
             };
 
             return this.View(viewModel);

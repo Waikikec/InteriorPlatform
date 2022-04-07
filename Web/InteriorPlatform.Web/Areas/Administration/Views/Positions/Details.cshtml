@@ -11,39 +11,29 @@
     <h4>Позиция</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            Име
-        </dt>
+        <dt>Име</dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt>
-            Изтрит ли е ?
-        </dt>
+        <dt>Изтрит ли е ?</dt>
         <dd>
             @Html.DisplayFor(model => model.IsDeleted)
         </dd>
-        <dt>
-            Изтрит
-        </dt>
+        <dt>Изтрит</dt>
         <dd>
             @Html.DisplayFor(model => model.DeletedOn)
         </dd>
-        <dt>
-            Създаден
-        </dt>
+        <dt>Създаден</dt>
         <dd>
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
-        <dt>
-            Променен
-        </dt>
+        <dt>Променен</dt>
         <dd>
             @Html.DisplayFor(model => model.ModifiedOn)
         </dd>
     </dl>
     <div>
-        <a class="btn btn-info" asp-action="Index">Назад</a>
+        <a class="btn btn-default" asp-controller="Dashboard" asp-action="Index">Назад</a>
         <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a>
     </div>
 </div>

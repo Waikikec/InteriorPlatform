@@ -14,10 +14,32 @@
             this.settingsService = settingsService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(IndexTabViewModel viewModel)
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
+            if (viewModel == null)
+            {
+                viewModel = new IndexTabViewModel
+                {
+                    ActiveTab = Tab.Categories,
+                };
+            }
+
             return this.View(viewModel);
+        }
+
+        public IActionResult SwitchToTabs(string tabName)
+        {
+            var viewModel = new IndexTabViewModel();
+
+            viewModel.ActiveTab = tabName switch
+            {
+                "Positions" => Tab.Positions,
+                "Categories" => Tab.Categories,
+                "Styles" => Tab.Styles,
+                _ => Tab.Positions,
+            };
+
+            return this.RedirectToAction(nameof(DashboardController.Index), viewModel);
         }
     }
 }

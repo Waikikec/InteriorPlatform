@@ -8,7 +8,5 @@
         public InquireInputModel Inquire { get; set; }
 
         public ByIdProjectViewModel Project { get; set; }
-
-        public SingleDesignerViewModel Designer { get; set; }
     }
 }

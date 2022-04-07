@@ -1,53 +1,50 @@
 ﻿@model InteriorPlatform.Data.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Категория - Създаване";
 }
 
-<h2>Create</h2>
+<div class="container">
+    <h2>Създаване на нов запис</h2>
 
-<h4>Category</h4>
-<hr />
-<div class="row">
+    <h4>Категория</h4>
+    <hr />
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Име (* задължително)</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                        <input asp-for="IsDeleted" /> Изтрит ли е ?
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="DeletedOn" class="control-label"></label>
+                <label asp-for="DeletedOn" class="control-label">Изтрит</label>
                 <input asp-for="DeletedOn" class="form-control" />
                 <span asp-validation-for="DeletedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
+                <label asp-for="CreatedOn" class="control-label">Създаден</label>
                 <input asp-for="CreatedOn" class="form-control" />
                 <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ModifiedOn" class="control-label"></label>
+                <label asp-for="ModifiedOn" class="control-label">Редактиран</label>
                 <input asp-for="ModifiedOn" class="form-control" />
                 <span asp-validation-for="ModifiedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <a class="btn btn-default" asp-controller="Dashboard" asp-action="Index">Назад</a>
+                <input type="submit" value="Създай" class="btn btn-success" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

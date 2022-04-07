@@ -1,7 +1,9 @@
 ﻿namespace InteriorPlatform.Web.ViewModels.Administration.Dashboard
 {
-    public class IndexViewModel
+    public enum Tab
     {
-        public int SettingsCount { get; set; }
+        Categories,
+        Positions,
+        Styles,
     }
 }

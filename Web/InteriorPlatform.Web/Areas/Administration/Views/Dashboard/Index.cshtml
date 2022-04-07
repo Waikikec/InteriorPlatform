@@ -1,7 +1,34 @@
-﻿@model InteriorPlatform.Web.ViewModels.Administration.Dashboard.IndexViewModel
+﻿@model InteriorPlatform.Web.ViewModels.Administration.Dashboard.IndexTabViewModel
 @{
-    this.ViewData["Title"] = "Admin dashboard";
+    this.ViewData["Title"] = "Админ Панел";
 }
 
-<h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+<h2 class="text-center">Администрация</h2>
+<div class="col-md-2">
+    <ul class="nav nav-pills nav-pills-rose flex-column" role="tablist">
+        <li role="presentation" class="nav-item @(Model.ActiveTab == InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Categories ? "active" : string.Empty)">
+            <a asp-route-tabname="Categories" asp-action="SwitchToTabs" class="nav-link">Категории</a>
+        </li>
+        <li role="presentation" class="nav-item @(Model.ActiveTab == InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Positions ? "active" : string.Empty)">
+            <a asp-route-tabname="Positions" asp-action="SwitchToTabs" class="nav-link">Позиции</a>
+        </li>
+        <li role="presentation" class="nav-item @(Model.ActiveTab == InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Styles ? "active" : string.Empty)">
+            <a asp-route-tabname="Styles" asp-action="SwitchToTabs" class="nav-link">Стилове</a>
+        </li>
+    </ul>
+</div>
+
+@switch (Model.ActiveTab)
+{
+    case InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Categories:
+        @await Component.InvokeAsync("Categories");
+        break;
+    case InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Positions:
+        @await Component.InvokeAsync("Positions");
+        break;
+    case InteriorPlatform.Web.ViewModels.Administration.Dashboard.Tab.Styles:
+        @await Component.InvokeAsync("Styles");
+        break;
+    default:
+        break;
+}
