@@ -1,12 +1,13 @@
-﻿@model InteriorPlatform.Data.Models.Position
+﻿@model InteriorPlatform.Data.Models.Style
 @{
-    ViewData["Title"] = "Позиция - Детайли";
+    ViewData["Title"] = "Стил - Изтриване";
 }
 
 <div class="container">
-    <h2>Детайли</h2>
+    <h2>Изтриване</h2>
 
-    <h4>Позиция</h4>
+    <h3>Сигурни ли сте, че искате да изтриете записа?</h3>
+    <h4>Стил</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Име</dt>
@@ -25,13 +26,15 @@
         <dd>
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
-        <dt>Променен</dt>
+        <dt>Редактиран</dt>
         <dd>
             @Html.DisplayFor(model => model.ModifiedOn)
         </dd>
     </dl>
-    <div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
         <a class="btn btn-default" asp-controller="Dashboard" asp-action="Index">Назад</a>
-        <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a>
-    </div>
+        <input type="submit" value="Изтриване" class="btn btn-danger" />
+    </form>
 </div>
