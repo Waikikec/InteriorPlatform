@@ -19,7 +19,7 @@
     public class ProjectsServiceTests
     {
         [Fact] // public async Task CreateAsync(CreateProjectInputModel model, ApplicationUser user, string imagePath)
-        public async Task CreateAsyncShouldAddProjectSuccessfully()
+        public async Task AddingProjectSuccessfully()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;

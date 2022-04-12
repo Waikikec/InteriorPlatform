@@ -26,9 +26,13 @@
             var list = new List<Category>();
             var mockRepo = new Mock<IRepository<Category>>();
 
-            mockRepo
-                .Setup(x => x.All())
-                .Returns(list.AsQueryable());
+            //mockRepo
+            //    .Setup(x => x.All())
+            //    .Returns(list.AsQueryable());
+
+            //mockRepo
+            //    .Setup(x => x.AddAsync(It.IsAny<Category>()))
+            //    .Callback((Category category) => list.Add(category));
 
             var service = new CategoriesService(categoriesRepository);
 

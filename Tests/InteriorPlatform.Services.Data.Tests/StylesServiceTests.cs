@@ -23,13 +23,6 @@
 
             var stylesRepository = new EfDeletableEntityRepository<Style>(dbContext);
 
-            var list = new List<Style>();
-            var mockRepo = new Mock<IRepository<Style>>();
-
-            mockRepo
-                .Setup(x => x.All())
-                .Returns(list.AsQueryable());
-
             var service = new StylesService(stylesRepository);
 
             var result = service.GetStyles();
