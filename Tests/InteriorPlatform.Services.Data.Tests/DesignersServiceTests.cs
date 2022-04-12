@@ -1,8 +1,8 @@
 ﻿namespace InteriorPlatform.Services.Data.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     using InteriorPlatform.Data;
@@ -16,14 +16,14 @@
 
     public class DesignersServiceTests : IDisposable
     {
+        private readonly ApplicationDbContext dbContext;
         private readonly EfDeletableEntityRepository<ApplicationUser> usersRepository;
         private readonly EfDeletableEntityRepository<Inquire> inquiresRepository;
-        private readonly ApplicationDbContext dbContext;
 
         public DesignersServiceTests()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "db").Options;
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
 
             this.dbContext = new ApplicationDbContext(options);
 
@@ -57,7 +57,7 @@
         }
 
         [Fact] // public IEnumerable<T> GetAll<T>()
-        public async Task GetAllDesignersAsyncWorksCorrectly()
+        public async Task GetAllDesignersReturnCorrectTypeAndCount()
         {
             var firstDesigner = new ApplicationUser()
             {
@@ -81,16 +81,80 @@
                 Company = new Company { Id = 2, Name = "Нова компания 2" },
             };
 
-            this.dbContext.Users.Add(firstDesigner);
-            this.dbContext.Users.Add(secondDesigner);
+            await this.dbContext.Users.AddAsync(firstDesigner);
+            await this.dbContext.Users.AddAsync(secondDesigner);
             await this.dbContext.SaveChangesAsync();
 
-            //var designersService = new DesignersService(this.usersRepository, this.inquiresRepository);
-            //var result = designersService.GetAll<SingleDesignerViewModel>().ToList();
+            var designersService = new DesignersService(this.usersRepository, this.inquiresRepository);
+            var result = designersService.GetAll<SingleDesignerViewModel>();
 
+            Assert.IsType<List<SingleDesignerViewModel>>(result);
             Assert.Equal(2, this.usersRepository.All().Count());
         }
 
-        public void Dispose() => this.dbContext.Database.EnsureDeleted();
+        [Fact] // public T GetById<T>(string id)
+        public async Task GetByIdDesignerCorrectly()
+        {
+            var firstDesigner = new ApplicationUser()
+            {
+                Id = "UserTest3",
+                Email = "martin_test1@abv.bg",
+                FirstName = "Мартин",
+                LastName = "Янков",
+                UserName = "Мартин Янков",
+                PasswordHash = "marto123",
+                Company = new Company { Id = 1, Name = "Нова компания" },
+            };
+
+            await this.dbContext.Users.AddAsync(firstDesigner);
+            await this.dbContext.SaveChangesAsync();
+
+            var savedDesigner = this.usersRepository.All().FirstOrDefault(x => x.Id == "UserTest3");
+
+            Assert.Equal("UserTest3", savedDesigner.Id);
+        }
+
+        [Fact] // public IEnumerable<T> GetRandom<T>(int count)
+        public async Task GetRandomDesignersByGivenNumber()
+        {
+            var firstDesigner = new ApplicationUser()
+            {
+                Id = "UserTest3",
+                Email = "martin_test1@abv.bg",
+                FirstName = "Мартин",
+                LastName = "Янков",
+                UserName = "Мартин Янков",
+                PasswordHash = "marto123",
+                Company = new Company { Id = 1, Name = "Нова компания" },
+            };
+
+            var secondDesigner = new ApplicationUser()
+            {
+                Id = "UserTest2",
+                Email = "teodor_test1@abv.bg",
+                FirstName = "Теодор",
+                LastName = "Янков",
+                UserName = "Теодор Янков",
+                PasswordHash = "tedo123",
+                Company = new Company { Id = 2, Name = "Нова компания 2" },
+            };
+
+            await this.dbContext.Users.AddAsync(firstDesigner);
+            await this.dbContext.Users.AddAsync(secondDesigner);
+            await this.dbContext.SaveChangesAsync();
+
+            var randomDesigners = this.usersRepository.All();
+
+            Assert.Equal(2, randomDesigners.Count());
+        }
+
+        public void Dispose()
+        {
+            this.dbContext.Database.EnsureDeleted();
+            this.dbContext.Dispose();
+
+            this.usersRepository.Dispose();
+            this.inquiresRepository.Dispose();
+        }
     }
 }
