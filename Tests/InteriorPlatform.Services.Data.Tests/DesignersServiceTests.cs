@@ -2,36 +2,42 @@
 {
     using System;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
 
     using InteriorPlatform.Data;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Data.Repositories;
+    using InteriorPlatform.Services.Mapping;
     using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Inquire;
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class DesignersServiceTests
+    public class DesignersServiceTests : IDisposable
     {
-        private readonly IDesignersService designersService;
+        private readonly EfDeletableEntityRepository<ApplicationUser> usersRepository;
+        private readonly EfDeletableEntityRepository<Inquire> inquiresRepository;
+        private readonly ApplicationDbContext dbContext;
 
         public DesignersServiceTests()
         {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "db").Options;
 
+            this.dbContext = new ApplicationDbContext(options);
+
+            this.usersRepository = new EfDeletableEntityRepository<ApplicationUser>(this.dbContext);
+            this.inquiresRepository = new EfDeletableEntityRepository<Inquire>(this.dbContext);
+
+            AutoMapperConfig.RegisterMappings(typeof(SingleDesignerViewModel).Assembly, typeof(ApplicationUser).Assembly);
         }
 
         [Fact] // public async Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user)
         public async Task AddingInquireSuccessfully()
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
-            var dbContext = new ApplicationDbContext(options);
+            var designersService = new DesignersService(this.usersRepository, this.inquiresRepository);
 
-            var usersRepository = new EfDeletableEntityRepository<ApplicationUser>(dbContext);
-            var inquiresRepository = new EfDeletableEntityRepository<Inquire>(dbContext);
-
-            var designersService = new DesignersService(usersRepository, inquiresRepository);
             var user = new ApplicationUser();
 
             var inquireAssembly = new InquireAssemblyViewModel
@@ -47,38 +53,44 @@
 
             await designersService.CreateInquireAsync(inquireAssembly, user);
 
-            Assert.Equal(1, inquiresRepository.All().Count());
+            Assert.Equal(1, this.inquiresRepository.All().Count());
         }
 
         [Fact] // public IEnumerable<T> GetAll<T>()
         public async Task GetAllDesignersAsyncWorksCorrectly()
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
-            var dbContext = new ApplicationDbContext(options);
-
-            var usersRepository = new EfDeletableEntityRepository<ApplicationUser>(dbContext);
-            var inquiresRepository = new EfDeletableEntityRepository<Inquire>(dbContext);
-
-            var designersService = new DesignersService(usersRepository, inquiresRepository);
-
             var firstDesigner = new ApplicationUser()
             {
+                Id = "UserTest1",
                 Email = "martin_test1@abv.bg",
                 FirstName = "Мартин",
                 LastName = "Янков",
                 UserName = "Мартин Янков",
                 PasswordHash = "marto123",
-                Company = new Company { Name = "Нова компания" },
+                Company = new Company { Id = 1, Name = "Нова компания" },
             };
 
-            await usersRepository.AddAsync(firstDesigner);
-            await usersRepository.SaveChangesAsync();
+            var secondDesigner = new ApplicationUser()
+            {
+                Id = "UserTest2",
+                Email = "teodor_test1@abv.bg",
+                FirstName = "Теодор",
+                LastName = "Янков",
+                UserName = "Теодор Янков",
+                PasswordHash = "tedo123",
+                Company = new Company { Id = 2, Name = "Нова компания 2" },
+            };
 
-            var result = designersService.GetAll<SingleDesignerViewModel>();
-            var count = result.Count();
+            this.dbContext.Users.Add(firstDesigner);
+            this.dbContext.Users.Add(secondDesigner);
+            await this.dbContext.SaveChangesAsync();
 
-            Assert.Equal(1, count);
+            //var designersService = new DesignersService(this.usersRepository, this.inquiresRepository);
+            //var result = designersService.GetAll<SingleDesignerViewModel>().ToList();
+
+            Assert.Equal(2, this.usersRepository.All().Count());
         }
+
+        public void Dispose() => this.dbContext.Database.EnsureDeleted();
     }
 }
