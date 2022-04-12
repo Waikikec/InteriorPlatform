@@ -12,27 +12,27 @@
     using Moq;
     using Xunit;
 
-    public class CategoriesServiceTests
+    public class StylesServiceTests
     {
         [Fact]
-        public void GetCategoriesReturnsKeyValuePairsType()
+        public void GetStylesReturnsKeyValuePairsType()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()).Options;
             var dbContext = new ApplicationDbContext(options);
 
-            var categoriesRepository = new EfDeletableEntityRepository<Category>(dbContext);
+            var stylesRepository = new EfDeletableEntityRepository<Style>(dbContext);
 
-            var list = new List<Category>();
-            var mockRepo = new Mock<IRepository<Category>>();
+            var list = new List<Style>();
+            var mockRepo = new Mock<IRepository<Style>>();
 
             mockRepo
                 .Setup(x => x.All())
                 .Returns(list.AsQueryable());
 
-            var service = new CategoriesService(categoriesRepository);
+            var service = new StylesService(stylesRepository);
 
-            var result = service.GetCategories();
+            var result = service.GetStyles();
 
             Assert.IsAssignableFrom<IEnumerable<KeyValuePair<string, string>>>(result);
         }
