@@ -141,6 +141,11 @@
                 .Get(null, null, "Styles")
                 .FirstOrDefault(x => x.Id == id);
 
+            if (project == null)
+            {
+                throw new NullReferenceException("Project is not found!");
+            }
+
             project.Name = input.Name;
             project.IsRealized = Convert.ToBoolean(input.IsRealized);
             project.IsPublic = Convert.ToBoolean(input.IsPublic);
