@@ -79,6 +79,11 @@
                 .All()
                 .FirstOrDefault(x => x.Id == id);
 
+            if (project == null)
+            {
+                throw new NullReferenceException("Project is not found!");
+            }
+
             this.projectsRepository.Delete(project);
             await this.projectsRepository.SaveChangesAsync();
         }

@@ -61,6 +61,17 @@
             Assert.Equal(0, count);
         }
 
+        [Fact]
+        public async Task DeleteProjectAsyncThrowException()
+        {
+            await this.SeedDatabase();
+
+            var exception = await Assert
+                .ThrowsAsync<NullReferenceException>(async () => await this.projectsService.DeleteAsync(3));
+
+            Assert.Equal("Project is not found!", exception.Message);
+        }
+
         [Fact] // public async Task UpdateAsync(int id, EditProjectInputModel input)
         public async Task UpdateProjectAsyncSuccessfully()
         {
@@ -112,6 +123,17 @@
             var result = this.projectsService.GetAll<SingleProjectViewModel>(1, 6);
 
             Assert.Single(result);
+        }
+
+        [Fact] // public T GetById<T>(int id)
+        public async Task GetProjectById()
+        {
+            await this.SeedDatabase();
+
+            var project = this.projectsService.GetById<SingleProjectViewModel>(1);
+
+            Assert.Equal("LAKE HOUSE INTERIORS", project.Name);
+            Assert.Equal(1, project.Id);
         }
 
         private async Task SeedDatabase()
