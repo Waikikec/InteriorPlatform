@@ -32,13 +32,19 @@
                         <h4 class="card-title">@designer.FirstName @designer.LastName</h4>
                         <h6 class="category text-muted">@designer.PositionName</h6>
                         <hr />
-                        <div class="row-fluid text-center">
-                            <ul class="list-inline">
-                                <li class="list-inline-item"><span class="material-icons">location_on</span>@designer.TownName</li>
-                                <li class="list-inline-item"><span class="material-icons">work</span>@designer.ProjectsCount</li>
-                                <li class="list-inline-item"><span class="material-icons">visibility</span>2131</li>
-                                <li class="list-inline-item"><span class="material-icons">trending_up</span>2462</li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <span class="card-description float-start d-flex align-items-center">
+                                    <span class="material-icons">location_on</span>
+                                    <span>@designer.TownName</span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="card-description float-end d-flex align-items-center">
+                                    <span class="material-icons">work</span>
+                                    <span>@designer.ProjectsCount</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
