@@ -51,7 +51,7 @@
                         <h6 class="category text-gray">Кратко описание:</h6>
                         @if (Model.Designer.AboutMe == null)
                         {
-                            <span class="card-description center-block">Няма информация засега</span>
+                            <span class="card-description center-block">Няма добавена информация</span>
                         }
                         else
                         {
@@ -67,24 +67,20 @@
                     <ul class="nav nav-pills nav-pills-icons" role="tablist">
                         <li class="active">
                             <a href="#work" role="tab" data-toggle="tab">
-                                <i class="material-icons">palette</i>
-                                Проекти
+                                <i class="material-icons">palette</i>Проекти
                             </a>
                         </li>
                         <li>
                             <a href="#inquires" role="tab" data-toggle="tab">
-                                <i class="fa fa-question" aria-hidden="true"></i>
-                                Запитвания
+                                <i class="fa fa-question" aria-hidden="true"></i>Запитвания
                             </a>
                         </li>
                         <li>
                             <a href="#settings" role="tab" data-toggle="tab">
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                Настройки
+                                <i class="fa fa-cog" aria-hidden="true"></i>Настройки
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -186,7 +182,9 @@
                                             <input asp-for="@Model.CloudinaryImage.Image" type="file" name="Image">
                                         </span>
                                         <span asp-validation-for="@Model.CloudinaryImage.Image" class="text-danger"></span>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Премахни</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                                            <i class="fa fa-times"></i> Премахни
+                                        </a>
                                     </div>
                                     <div>
                                         <button type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
@@ -202,18 +200,18 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <form asp-controller="Designers" asp-action="SetAboutMe" method="post" class="form" name="aboutMe">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="input-group">
-                                        <label asp-for="AboutMe.Info" class="form-label">Описание:</label>
-                                        <textarea asp-for="AboutMe.Info"
-                                                  type="text"
+                                <form asp-controller="Designers" asp-action="SetAboutMe" method="post" class="form" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.AboutMe" class="form-label">Описание:</label>
+                                        <textarea asp-for="@Model.AboutMe"
                                                   class="form-control"
                                                   placeholder="моля добавете кратък текст относно вашето образование, професионален опит или интереси"
                                                   rows="7"></textarea>
-                                        <span asp-validation-for="AboutMe.Info" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.AboutMe" class="text-danger"></span>
                                     </div>
-                                    <button name="aboutMe" type="submit" class="btn btn-info btn-round">Запази</button>
+                                    <div>
+                                        <button type="submit" class="btn btn-info btn-round">Запази</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
