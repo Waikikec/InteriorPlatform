@@ -16,13 +16,16 @@
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Project> projectsRepository;
         private readonly IDeletableEntityRepository<Style> stylesRepository;
+        private readonly IRepository<UserProject> userProjectsRepository;
 
         public ProjectsService(
             IDeletableEntityRepository<Project> projectsRepository,
-            IDeletableEntityRepository<Style> stylesRepository)
+            IDeletableEntityRepository<Style> stylesRepository,
+            IRepository<UserProject> userProjectsRepository)
         {
             this.projectsRepository = projectsRepository;
             this.stylesRepository = stylesRepository;
+            this.userProjectsRepository = userProjectsRepository;
         }
 
         public async Task CreateAsync(CreateProjectInputModel model, ApplicationUser user, string imagePath)
@@ -71,6 +74,15 @@
 
             await this.projectsRepository.AddAsync(project);
             await this.projectsRepository.SaveChangesAsync();
+
+            var userProjectLink = new UserProject
+            {
+                ProjectId = project.Id,
+                UserId = user.Id,
+            };
+            user.UserProjects.Add(userProjectLink);
+            await this.userProjectsRepository.AddAsync(userProjectLink);
+            await this.userProjectsRepository.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)

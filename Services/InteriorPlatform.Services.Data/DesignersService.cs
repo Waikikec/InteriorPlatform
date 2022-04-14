@@ -45,6 +45,14 @@
                 .To<T>()
                 .ToList();
 
+            //        var project = this.projectsRepository
+            //.Get(null, null, "Styles")
+            //.FirstOrDefault(x => x.Id == id);
+
+            var users2 = this.usersRepository
+                .Get(null, null, "UserProjects")
+                .ToList();
+
             return users;
         }
 
