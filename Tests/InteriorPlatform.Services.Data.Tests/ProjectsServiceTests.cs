@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
 
     using InteriorPlatform.Data;
+    using InteriorPlatform.Data.Common.Repositories;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Data.Repositories;
     using InteriorPlatform.Services.Mapping;
@@ -23,6 +24,7 @@
         private readonly IProjectsService projectsService;
         private readonly EfDeletableEntityRepository<Project> projectsRepository;
         private readonly EfDeletableEntityRepository<Style> stylesRepository;
+        private readonly IRepository<UserProject> userProjectsRepository;
 
         public ProjectsServiceTests()
         {
@@ -34,7 +36,7 @@
             this.projectsRepository = new EfDeletableEntityRepository<Project>(this.dbContext);
             this.stylesRepository = new EfDeletableEntityRepository<Style>(this.dbContext);
 
-            this.projectsService = new ProjectsService(this.projectsRepository, this.stylesRepository);
+            this.projectsService = new ProjectsService(this.projectsRepository, this.stylesRepository, this.userProjectsRepository);
 
             AutoMapperConfig.RegisterMappings(typeof(SingleProjectViewModel).Assembly, typeof(Project).Assembly);
         }

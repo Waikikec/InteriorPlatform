@@ -35,21 +35,29 @@
                     <a href="#pablo" class="btn btn-info btn-round">Изпрати Запитване</a>
                     <hr />
                     <div class="row">
-                        <span class="card-description">
-                            <i class="fa fa-clock-o" aria-hidden="true"> Регистриран: @Model.Designer.CreatedOn.ToString("MM/dd/yyyy")</i>
-                        </span>
-                        <span class="card-description">
-                            <i class="fa fa-database" aria-hidden="true"> Проекти: @Model.Projects.Count()</i>
-                        </span>
+                        <div class="col-sm-6">
+                            <span class="card-description float-start d-flex align-items-center">
+                                <i class="fa fa-clock-o" aria-hidden="true"> Регистриран: @Model.Designer.CreatedOn.ToString("MM/dd/yyyy")</i>
+                            </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="card-description float-end d-flex align-items-center">
+                                <i class="fa fa-database" aria-hidden="true"> Проекти: @Model.Projects.Count()</i>
+                            </span>
+                        </div>
                     </div>
                     <hr />
                     <div class="container-fluid">
                         <h6 class="category text-gray">Кратко описание:</h6>
-                        <span class="card-description float-start">
-                            инфо инфо инфо
-                        </span>
+                        @if (Model.Designer.AboutMe == null)
+                        {
+                            <span class="card-description center-block">Няма информация засега</span>
+                        }
+                        else
+                        {
+                            <span class="card-description float-start">@Model.Designer.AboutMe</span>
+                        }
                     </div>
-
                 </div>
             </div>
 
@@ -155,33 +163,61 @@
 
                 <!-- DESIGNER SETTINGS TAB -->
                 <div class="tab-pane" id="settings">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">Профилна снимка</h4>
+                    <div class="row">
+                        <!-- Profile Photo -->
+                        <div class="col-md-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="settings">
+                                    <h4 class="panel-title">Профилна снимка</h4>
+                                </div>
+                            </div>
+                            <form asp-controller="Designers" asp-action="Upload" method="post" class="form" enctype="multipart/form-data">
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail img-raised">
+                                        <img src="~/assets/img/image_placeholder.jpg" alt="...">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail img-raised" style=""></div>
+                                    <div>
+                                        <label asp-for="@Model.CloudinaryImage.Image">Снимкa</label>
+                                        <span class="btn btn-raised btn-round btn-default btn-file">
+                                            <span class="fileinput-new">Избери снимка</span>
+                                            <span class="fileinput-exists">Промени</span>
+                                            <input asp-for="@Model.CloudinaryImage.Image" type="hidden" value="" name="Image">
+                                            <input asp-for="@Model.CloudinaryImage.Image" type="file" name="Image">
+                                        </span>
+                                        <span asp-validation-for="@Model.CloudinaryImage.Image" class="text-danger"></span>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Премахни</a>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- About Me -->
+                        <div class="col-md-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="settings">
+                                    <h4 class="panel-title">Информация относно вас</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <form asp-controller="Designers" asp-action="SetAboutMe" method="post" class="form" name="aboutMe">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="input-group">
+                                        <label asp-for="AboutMe.Info" class="form-label">Описание:</label>
+                                        <textarea asp-for="AboutMe.Info"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="моля добавете кратък текст относно вашето образование, професионален опит или интереси"
+                                                  rows="7"></textarea>
+                                        <span asp-validation-for="AboutMe.Info" class="text-danger"></span>
+                                    </div>
+                                    <button name="aboutMe" type="submit" class="btn btn-info btn-round">Запази</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <form method="post" class="form" enctype="multipart/form-data" asp-controller="Designers" asp-action="Upload">
-                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail img-raised">
-                                <img src="~/assets/img/image_placeholder.jpg" alt="...">
-                            </div>
-                            <div class="fileinput-preview fileinput-exists thumbnail img-raised" style=""></div>
-                            <div>
-                                <label asp-for="@Model.CloudinaryImage.Image">Снимкa</label>
-                                <span class="btn btn-raised btn-round btn-default btn-file">
-                                    <span class="fileinput-new">Избери снимка</span>
-                                    <span class="fileinput-exists">Промени</span>
-                                    <input asp-for="@Model.CloudinaryImage.Image" type="hidden" value="" name="Image">
-                                    <input asp-for="@Model.CloudinaryImage.Image" type="file" name="Image">
-                                </span>
-                                <span asp-validation-for="@Model.CloudinaryImage.Image" class="text-danger"></span>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Премахни</a>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

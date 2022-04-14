@@ -117,5 +117,28 @@
 
             return this.RedirectToAction("All", "Designers");
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SetAboutMe(AboutMeInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction("All", "Designers");
+            }
+
+            var userId = this.userManager.GetUserId(this.User);
+
+            try
+            {
+                await this.designersService.SetAboutMeForDesigner(model, userId);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+
+            return this.RedirectToAction("All", "Designers");
+        }
     }
 }

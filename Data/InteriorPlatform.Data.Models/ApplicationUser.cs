@@ -25,7 +25,7 @@ namespace InteriorPlatform.Data.Models
 
         public string LastName { get; set; }
 
-        public int ProjectsCount => this.UserProjects.Count;
+        public string AboutMe { get; set; }
 
         public CloudImage ProfilePicture { get; set; }
 

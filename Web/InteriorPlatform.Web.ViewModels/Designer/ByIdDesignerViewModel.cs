@@ -10,6 +10,8 @@
     {
         public CloudinaryImageInputModel CloudinaryImage { get; set; }
 
+        public AboutMeInputModel AboutMe { get; set; }
+
         public SingleDesignerViewModel Designer { get; set; }
 
         public IEnumerable<SingleProjectViewModel> Projects { get; set; }

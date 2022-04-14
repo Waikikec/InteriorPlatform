@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using InteriorPlatform.Data.Models;
+    using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Inquire;
 
     public interface IDesignersService
@@ -15,5 +16,7 @@
         T GetById<T>(string id);
 
         Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user);
+
+        Task SetAboutMeForDesigner(AboutMeInputModel model, string userId);
     }
 }

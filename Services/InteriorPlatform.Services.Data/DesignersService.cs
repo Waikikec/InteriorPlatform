@@ -8,6 +8,7 @@
     using InteriorPlatform.Data.Common.Repositories;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
+    using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Inquire;
 
     public class DesignersService : IDesignersService
@@ -21,6 +22,22 @@
         {
             this.usersRepository = usersRepository;
             this.inquiresRepository = inquiresRepository;
+        }
+
+        public async Task SetAboutMeForDesigner(AboutMeInputModel model, string userId)
+        {
+            var currentUser = this.usersRepository
+                .All()
+                .FirstOrDefault(x => x.Id == userId);
+
+            if (currentUser == null)
+            {
+                throw new NullReferenceException("User is not found!");
+            }
+
+            currentUser.AboutMe = model.Info;
+
+            await this.usersRepository.SaveChangesAsync();
         }
 
         public async Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user)
@@ -43,14 +60,6 @@
             var users = this.usersRepository
                 .AllAsNoTracking()
                 .To<T>()
-                .ToList();
-
-            //        var project = this.projectsRepository
-            //.Get(null, null, "Styles")
-            //.FirstOrDefault(x => x.Id == id);
-
-            var users2 = this.usersRepository
-                .Get(null, null, "UserProjects")
                 .ToList();
 
             return users;
