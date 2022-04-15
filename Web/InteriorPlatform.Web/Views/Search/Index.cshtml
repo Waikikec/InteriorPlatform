@@ -1,0 +1,39 @@
+﻿@model InteriorPlatform.Web.ViewModels.Search.SearchIndexViewModel
+@{
+    this.ViewData["Title"] = "Търсене";
+    var styleItems = this.Model.StylesItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<div class="container">
+    <h3 class="card-title">Търсене</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <form method="post" class="form" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="form-label">Ключова дума</label>
+                    <input type="text" class="form-control">
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Стилове</label>
+                    <select asp-items="styleItems" class="selectpicker" data-style="select-with-transition" multiple="" title="Избери стил" data-size="7" tabindex="-98"></select>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Категория</label>
+                    <select asp-items="categoryItems" class="selectpicker" data-style="select-with-transition" title="Избери категория" data-size="7" tabindex="-98"></select>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary">Търси</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9">
+            Hiiiiiiiiiiiiiiiiiiiiii
+        </div>
+    </div>
+</div>

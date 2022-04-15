@@ -23,5 +23,6 @@
         T GetById<T>(int id);
 
         int GetCount();
+        IEnumerable<T> GetBySearch<T>(object name, object category, object style);
     }
 }

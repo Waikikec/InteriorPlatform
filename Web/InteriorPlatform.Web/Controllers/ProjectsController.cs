@@ -5,7 +5,6 @@
 
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Data;
-    using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Inquire;
     using InteriorPlatform.Web.ViewModels.Project;
     using Microsoft.AspNetCore.Authorization;
