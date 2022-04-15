@@ -1,4 +1,4 @@
-# Javascript Web Module November 2021 SoftUni
+# ASP.NET Core Web February 2022 SoftUni
 
 # Contents
 
@@ -6,18 +6,26 @@
 - [Technologies](#technologies)
 - [DatabaseScheme](#DatabaseScheme)
 - [Photos](#photos)
-- [Development Tools](#development-tools)
 - [License](#license)
 
 # Overview
 
-This project is FAB Design is professional platform for interior and product design.
+ - FAB Design is an online platform for interior and product design. Users can list their designs and connect clients with designers, architects and engineers.
+ 
+ - The web application is designed for the ASP.NET Core course at SoftUni (February 2022).
 
 # Technologies
 
-- [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
-- [Entity Framework Core 3.1](https://github.com/axios/axios)
-- [SQL Server](https://github.com/axios/axios)
+- [ASP.NET Core 5.0](https://docs.microsoft.com/en-us/aspnet/core/)
+  - ASP.NET Identity System
+  - MVC Areas with Multiple Layouts
+  - Razor Pages, Sections, Partial Views
+  - View Components
+  - Repository Pattern
+  - Auto Мapping
+  - Dependency Injection
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/)
+- [Microsoft SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Material Kit Pro](https://demos.creative-tim.com/material-kit-pro/)
   - Bootstrap 5 Design System
 - [Send Grid](https://sendgrid.com/)
@@ -25,28 +33,21 @@ This project is FAB Design is professional platform for interior and product des
 - [TomTom Maps](https://developer.tomtom.com/)
   - Map Display API
 - [Bootstrap](https://getbootstrap.com/)
-  - framework for building responsive, mobile-first sites
+  - Framework for building responsive, mobile-first sites
 - [Cloudinary](https://cloudinary.com/)
   - Image and Video API for Powerful Visual Experiences
+- [xUnit](https://xunit.net/)
+  - Unit testing tool for the .NET Framework
+- [Masonry](https://masonry.desandro.com/)
+  - Masonry is a JavaScript grid layout library
 
 # Database Scheme
 
-![diagram](https://github.com/Waikikec/InteriorPlatform/blob/master/Web/InteriorPlatform.Web/wwwroot/git/diagram.png)
 
-# Development Tools
 
-- [NPM](https://yarnpkg.com/en/)
-  - Package manager and script runner
-- [Nodemon](https://github.com/remy/nodemon)
-  - Monitors and restarts node server when source changes
-- [Cors](https://www.npmjs.com/package/cors)
-  - Package for providing a Connection/Express middleware that can be used to enable CORS with various options.
-- [Styled Components](https://styled-components.com/)
-  - Visual primitives to style application
-- [Firebase Storage](https://www.npmjs.com/package/firebase)
-  - Firebase Storage lets you upload and store user generated content, such as files, and images.
-- [Redux Toolkit](https://redux.js.org/)
-  - Centralizing your application's state and logic
+# Photos
+
+
 
 # License
 
