@@ -36,7 +36,7 @@
         {
             var inputModel = new SearchListModel
             {
-                Projects = this.projectsService.GetBySearch<SingleProjectViewModel>(input.Name, input.Category, input.Style),
+                Projects = this.projectsService.GetBySearch<SingleProjectViewModel>(input.Name, input.CategoryId, input.Styles),
             };
             return this.View(inputModel);
         }

@@ -135,6 +135,11 @@
             return project;
         }
 
+        public IEnumerable<T> GetBySearch<T>(object name, object category, object style)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetCount()
         {
             return this.projectsRepository
