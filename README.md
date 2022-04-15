@@ -3,85 +3,33 @@
 # Contents
 
 - [Overview](#overview)
-- [Technologies)](#technologies)
-- [Database Scheme](#DBdiagram)
+- [Technologies](#technologies)
+- [DatabaseScheme](#DatabaseScheme)
 - [Photos](#photos)
 - [Development Tools](#development-tools)
 - [License](#license)
 
-# Quick Start
+# Overview
 
-## `config`
+This project is FAB Design is professional platform for interior and product design.
 
-1. Install [Node.js](https://nodejs.org/en/) & NPM
-2. Install [Nodemon](https://github.com/remy/nodemon) package globally:
-   ```
-   npm i nodemon -g
-   ```
-3. Install server and client packages:
+# Technologies
 
-   ```
-   npm install
-   ```
+- [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
+- [Entity Framework Core 3.1](https://github.com/axios/axios)
+- [SQL Server](https://github.com/axios/axios)
+- [Material Kit Pro](https://demos.creative-tim.com/material-kit-pro/)
+  - Bootstrap 5 Design System
+- [Send Grid](https://sendgrid.com/)
+  - Email API
+- [TomTom Maps](https://developer.tomtom.com/)
+  - Map Display API
+- [Bootstrap](https://getbootstrap.com/)
+  - framework for building responsive, mobile-first sites
 
-4. Install [MongoDB](https://www.mongodb.com/download-center/community)
+# Database Scheme
 
-## `run`
-
-1. start node.js web server from api folder
-
-   ```
-   npm start
-   ```
-
-2. start react client app from client folder
-   ```
-   npm start
-   ```
-
-# Folder Structure
-
-```
-+-- client/                # react client app
-|   +-- public/                 # static resources
-|   +-- src/                    # client source
-|   |   +-- pages/                  # react pages
-|   |   +-- components/             # react components
-|   |   +-- redux/                  # redux store and user slice
-|   |   +-- utils/                  # firebase config and dummy data
-|   |   +-- App.js                  # Routes and Navigations
-|   |   +-- index.js                # client-side config
-|   |
-|   +-- package.json            # npm package config
-|
-+-- api/                   # node web server + api
-|   +-- src/                    # server source
-|   |   +-- routes/                 # api endpoints
-|   |   +-- models/                 # mongoose data models
-|   |   +-- index.js                # server config
-|   |
-|   +-- package.json            # server npm package config
-|
-+-- README.md              # this readme file
-```
-
-# Client
-
-- [React](https://reactjs.org/)
-  - Web client
-- [Axios](https://github.com/axios/axios)
-  - AJAX requests
-
-# Server
-
-- [Node.js](https://nodejs.org/en/)
-  - Server platform
-- [Express](https://expressjs.com/)
-  - Web server
-- [MongoDB Atlas Database](https://www.mongodb.com/atlas/database)
-  - Database server
-- [Mongoose](https://mongoosejs.com/)
-  - Server-side data models
+![diagram](/Web/InteriorPlatform.Web/wwwroot/images/diagram.png)
 
 # Development Tools
 
