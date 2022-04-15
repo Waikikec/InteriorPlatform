@@ -26,10 +26,12 @@ This project is FAB Design is professional platform for interior and product des
   - Map Display API
 - [Bootstrap](https://getbootstrap.com/)
   - framework for building responsive, mobile-first sites
+- [Cloudinary](https://cloudinary.com/)
+  - Image and Video API for Powerful Visual Experiences
 
 # Database Scheme
 
-![diagram](/Web/InteriorPlatform.Web/wwwroot/images/diagram.png)
+![diagram](https://github.com/Waikikec/InteriorPlatform/blob/master/Web/InteriorPlatform.Web/wwwroot/git/diagram.png)
 
 # Development Tools
 
