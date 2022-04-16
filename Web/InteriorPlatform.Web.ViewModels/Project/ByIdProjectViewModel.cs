@@ -24,6 +24,8 @@
 
         public ApplicationUser AddedByUser { get; set; }
 
+        public string ProfilePicture { get; set; }
+
         public ICollection<Image> Images { get; set; }
 
         public ICollection<Like> Likes { get; set; }
@@ -35,7 +37,9 @@
             configuration.CreateMap<Project, ByIdProjectViewModel>()
                 .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images))
                 .ForMember(dest => dest.Likes, opt => opt.MapFrom(src => src.Likes))
-                .ForMember(dest => dest.LikesCount, opt => opt.MapFrom(x => x.Likes.Count() == 0 ? 0 : x.Likes.Sum(v => v.Value)));
+                .ForMember(dest => dest.LikesCount, opt => opt.MapFrom(src => src.Likes.Count() == 0 ? 0 : src.Likes.Sum(v => v.Value)))
+                .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.AddedByUser.ProfilePicture.PictureUrl));
+
         }
     }
 }

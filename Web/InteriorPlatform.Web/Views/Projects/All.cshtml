@@ -18,7 +18,7 @@
                 <div class="card card-blog">
                     <div class="card-image">
                         <a asp-action="ById" asp-route-id="@project.Id">
-                            <img class="img" src="@project.ImageUrl" alt="@project.Name" />
+                            <img class="img" style="height: 220px; object-fit: cover" src="@project.ImageUrl" alt="@project.Name" />
                             <div class="card-title">
                                 @project.Name
                             </div>

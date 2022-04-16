@@ -18,5 +18,7 @@
         Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user);
 
         Task SetAboutMeForDesigner(AboutMeInputModel model, string userId);
+
+        ApplicationUser GetPhoto(string id);
     }
 }

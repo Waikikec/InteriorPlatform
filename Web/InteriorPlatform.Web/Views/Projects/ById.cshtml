@@ -22,13 +22,13 @@
         <div class="card card-profile">
             <div class="card-avatar">
                 <a asp-controller="Designers" asp-action="ById" asp-route-id="@Model.Project.AddedByUser.Id">
-                        @if (Model.Project.AddedByUser.ProfilePicture == null)
+                        @if (Model.Project.ProfilePicture == null)
                         {
                             <img class="img" src="~/assets/img/placeholder.jpg" alt="@Model.Project.AddedByUser.Id" />
                         }
                         else
                         {
-                            <img class="img" src="@Model.Project.AddedByUser.ProfilePicture.PictureUrl" alt="@Model.Project.AddedByUser.Id" />
+                            <img class="img" src="@Model.Project.ProfilePicture" alt="@Model.Project.AddedByUser.Id" />
                         }
                 </a>
             </div>

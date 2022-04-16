@@ -1,6 +1,7 @@
 ﻿namespace InteriorPlatform.Web.Controllers
 {
     using System;
+    using System.IO;
     using System.Threading.Tasks;
 
     using InteriorPlatform.Data.Models;
@@ -11,6 +12,7 @@
     using InteriorPlatform.Web.ViewModels.Inquire;
     using InteriorPlatform.Web.ViewModels.Project;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +25,7 @@
         private readonly IInquiresService inquiresService;
         private readonly ICloudImageService imageService;
         private readonly IImageDbService imageDbService;
+        private readonly IWebHostEnvironment environment;
         private readonly UserManager<ApplicationUser> userManager;
 
         public DesignersController(
@@ -31,6 +34,7 @@
             IInquiresService inquiresService,
             ICloudImageService imageService,
             IImageDbService imageDbService,
+            IWebHostEnvironment environment,
             UserManager<ApplicationUser> userManager)
         {
             this.designersService = designersService;
@@ -38,6 +42,7 @@
             this.inquiresService = inquiresService;
             this.imageService = imageService;
             this.imageDbService = imageDbService;
+            this.environment = environment;
             this.userManager = userManager;
         }
 
@@ -139,6 +144,22 @@
             }
 
             return this.RedirectToAction("All", "Designers");
+        }
+
+        public string GetProfilePicture(string id)
+        {
+            var user = this.designersService.GetPhoto(id);
+
+            if (user.ProfilePicture == null)
+            {
+                var placeholder = "placeholder.jpg";
+                string localImage = Path.Combine(this.environment.WebRootPath, "assets/img", placeholder);
+
+                return localImage;
+            }
+
+            var cloudImage = user.ProfilePicture.PictureUrl;
+            return cloudImage;
         }
     }
 }

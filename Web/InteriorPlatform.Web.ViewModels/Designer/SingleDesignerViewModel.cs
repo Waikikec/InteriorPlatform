@@ -1,6 +1,7 @@
 ﻿namespace InteriorPlatform.Web.ViewModels.Designer
 {
     using System;
+
     using AutoMapper;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;

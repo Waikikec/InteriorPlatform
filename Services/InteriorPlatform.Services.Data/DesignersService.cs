@@ -76,6 +76,15 @@
             return user;
         }
 
+        public ApplicationUser GetPhoto(string id)
+        {
+            var user = this.usersRepository
+                .Get(null, null, "ProfilePicture")
+                .FirstOrDefault(x => x.Id == id);
+
+            return user;
+        }
+
         public IEnumerable<T> GetRandom<T>(int count)
         {
             return this.usersRepository
