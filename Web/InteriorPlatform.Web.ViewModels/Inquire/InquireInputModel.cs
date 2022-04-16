@@ -2,9 +2,11 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoMapper;
     using InteriorPlatform.Data.Models;
+    using InteriorPlatform.Services.Mapping;
 
-    public class InquireInputModel
+    public class InquireInputModel : IMapFrom<Inquire>
     {
         [Required(ErrorMessage = "Полето '{0}' е задължително.")]
         [Display(Name = "Име")]
@@ -26,6 +28,8 @@
         [StringLength(500, ErrorMessage = "Полето '{0}' трябва да бъде между {2} и максимум {1} символа.", MinimumLength = 1)]
         public string Info { get; set; }
 
-        public ApplicationUser AddedByUserId { get; set; }
+        [Required(ErrorMessage = "Полето '{0}' е задължително.")]
+        [Display(Name = "Дизайнер")]
+        public string AddedByUserId { get; set; }
     }
 }

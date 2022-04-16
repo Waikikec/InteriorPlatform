@@ -40,7 +40,7 @@
             await this.usersRepository.SaveChangesAsync();
         }
 
-        public async Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user)
+        public async Task CreateInquireAsync(InquireAssemblyViewModel model)
         {
             var inquire = new Inquire
             {
@@ -48,7 +48,7 @@
                 PhoneNumber = model.Inquire.PhoneNumber,
                 Email = model.Inquire.Email,
                 Info = model.Inquire.Info,
-                AddedByUserId = user.Id,
+                AddedByUserId = model.Inquire.AddedByUserId,
             };
 
             await this.inquiresRepository.AddAsync(inquire);

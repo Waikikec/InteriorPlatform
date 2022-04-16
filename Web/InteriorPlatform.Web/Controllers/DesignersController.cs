@@ -76,11 +76,13 @@
                 return this.RedirectToAction("All", "Designers");
             }
 
+            var route = this.Request.Path.Value;
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             try
             {
-                await this.designersService.CreateInquireAsync(model, user);
+                await this.designersService.CreateInquireAsync(model);
             }
             catch (Exception ex)
             {

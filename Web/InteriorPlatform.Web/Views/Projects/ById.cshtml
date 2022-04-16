@@ -49,9 +49,9 @@
                         </span>
                     </div>
                     <div class="col-sm-6">
-                        <span class="card-description float-end d-flex align-items-center">
+                        @*<span class="card-description float-end d-flex align-items-center">
                             <span class="material-icons active">favorite_border</span>
-                        </span>
+                        </span>*@
                         <span class="card-description float-end d-flex align-items-center">
                             <span class="material-icons" style="cursor: pointer" data-like="1">thumb_up</span>
                             <span id="likesCountValue">@Model.Project.LikesCount</span>
@@ -121,6 +121,8 @@
                 <form asp-controller="Designers" asp-action="Inquire" class="form" method="post" id="inquireForm">
                     <div class="modal-body">
                         <p class="description text-center">Изпрати запитване и получи оферта</p>
+                        <!-- Hidden Input For Designer Id -->
+                        <input asp-for="@Model.Inquire.AddedByUserId" value="@Model.Project.AddedByUser.Id" type="hidden" class="form-control">
 
                         <div class="card-content">
                             <div class="input-group">

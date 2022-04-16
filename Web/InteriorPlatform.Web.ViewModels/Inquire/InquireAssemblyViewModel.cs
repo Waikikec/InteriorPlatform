@@ -1,6 +1,5 @@
 ﻿namespace InteriorPlatform.Web.ViewModels.Inquire
 {
-    using InteriorPlatform.Web.ViewModels.Designer;
     using InteriorPlatform.Web.ViewModels.Project;
 
     public class InquireAssemblyViewModel

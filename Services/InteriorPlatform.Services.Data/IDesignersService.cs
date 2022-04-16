@@ -15,7 +15,7 @@
 
         T GetById<T>(string id);
 
-        Task CreateInquireAsync(InquireAssemblyViewModel model, ApplicationUser user);
+        Task CreateInquireAsync(InquireAssemblyViewModel model);
 
         Task SetAboutMeForDesigner(AboutMeInputModel model, string userId);
 
