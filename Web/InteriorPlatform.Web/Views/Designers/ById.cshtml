@@ -174,7 +174,7 @@
                                     <h4 class="panel-title">Профилна снимка</h4>
                                 </div>
                             </div>
-                            <form asp-controller="Designers" asp-action="Upload" method="post" class="form" enctype="multipart/form-data">
+                            <form name="profilePicture" asp-controller="Designers" asp-action="Upload" method="post" class="form" enctype="multipart/form-data">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <div class="fileinput-new thumbnail img-raised">
                                         <img src="~/assets/img/image_placeholder.jpg" alt="...">
@@ -194,7 +194,7 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
+                                        <button name="profilePicture" type="submit" class="btn btn-info btn-round fileinput-exists">Качи</button>
                                     </div>
                                 </div>
                             </form>
@@ -203,21 +203,23 @@
                         <div class="col-md-5">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="settings">
-                                    <h4 class="panel-title">Информация относно вас</h4>
+                                    <h4 class="panel-title">Повече за теб</h4>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <form asp-controller="Designers" asp-action="SetAboutMe" method="post" class="form" enctype="multipart/form-data">
+                                <form asp-controller="Designers" asp-action="SetAboutMe" name="aboutMe" method="post" class="form" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label asp-for="@Model.AboutMe" class="form-label">Описание:</label>
-                                        <textarea asp-for="@Model.AboutMe"
+                                        <label asp-for="@Model.AboutMe.AboutMe" class="form-label">Описание:</label>
+                                        <textarea asp-for="@Model.AboutMe.AboutMe"
+                                                  name="aboutMe"
+                                                  value=""
                                                   class="form-control"
                                                   placeholder="моля добавете кратък текст относно вашето образование, професионален опит или интереси"
                                                   rows="7"></textarea>
-                                        <span asp-validation-for="@Model.AboutMe" class="text-danger"></span>
+                                        <span asp-validation-for="@Model.AboutMe.AboutMe" class="text-danger"></span>
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-info btn-round">Запази</button>
+                                        <button name="aboutMe" type="submit" class="btn btn-info btn-round">Запази</button>
                                     </div>
                                 </form>
                             </div>

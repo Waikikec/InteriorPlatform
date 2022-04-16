@@ -8,7 +8,7 @@
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
 
-    public class ByIdProjectViewModel : IMapTo<Project>, IHaveCustomMappings
+    public class ByIdProjectViewModel : IMapFrom<Project>, IHaveCustomMappings
     {
         public int Id { get; set; }
 

@@ -35,7 +35,7 @@
                 throw new NullReferenceException("User is not found!");
             }
 
-            currentUser.AboutMe = model.Info;
+            currentUser.AboutMe = model.AboutMe;
 
             await this.usersRepository.SaveChangesAsync();
         }

@@ -2,11 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using AutoMapper;
     using InteriorPlatform.Data.Models;
     using InteriorPlatform.Services.Mapping;
 
-    public class InquireInputModel : IMapFrom<Inquire>
+    public class InquireInputModel : IMapTo<Inquire>
     {
         [Required(ErrorMessage = "Полето '{0}' е задължително.")]
         [Display(Name = "Име")]
