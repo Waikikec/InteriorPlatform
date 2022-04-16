@@ -24,6 +24,6 @@
 
         int GetCount();
 
-        IEnumerable<T> GetBySearch<T>(string name, int category, IEnumerable<int> styles);
+        IEnumerable<T> GetBySearch<T>(string name, int? categoryId, IEnumerable<int> styles);
     }
 }

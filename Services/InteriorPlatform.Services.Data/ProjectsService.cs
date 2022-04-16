@@ -135,7 +135,7 @@
             return project;
         }
 
-        public IEnumerable<T> GetBySearch<T>(string name, int category, IEnumerable<int> styles)
+        public IEnumerable<T> GetBySearch<T>(string name, int? category, IEnumerable<int> styles)
         {
             var query = this.projectsRepository.All().AsQueryable();
 
@@ -152,7 +152,7 @@
                 query = query.Where(x => x.Name.Contains(name));
             }
 
-            if (category > 0)
+            if (category != null)
             {
                 query = query.Where(x => x.CategoryId == category);
             }

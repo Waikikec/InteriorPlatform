@@ -43,7 +43,10 @@
                 SearchListModel = new SearchListModel
                 {
                     Projects = this.projectsService
-                    .GetBySearch<SingleProjectViewModel>(input.SearchInputModel.Name, input.SearchInputModel.CategoryId, input.SearchInputModel.Styles),
+                    .GetBySearch<SingleProjectViewModel>(
+                        input.SearchInputModel.Name,
+                        input.SearchInputModel.CategoryId,
+                        input.SearchInputModel.Styles),
                 },
                 SearchViewModel = new SearchIndexViewModel
                 {
