@@ -135,9 +135,29 @@
             return project;
         }
 
-        public IEnumerable<T> GetBySearch<T>(object name, object category, object style)
+        public IEnumerable<T> GetBySearch<T>(string name, int category, IEnumerable<int> styles)
         {
-            throw new NotImplementedException();
+            var query = this.projectsRepository.All().AsQueryable();
+
+            if (styles != null)
+            {
+                foreach (var styleId in styles)
+                {
+                    query = query.Where(x => x.Styles.Any(i => i.Id == styleId));
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(name) == false)
+            {
+                query = query.Where(x => x.Name.Contains(name));
+            }
+
+            if (category > 0)
+            {
+                query = query.Where(x => x.CategoryId == category);
+            }
+
+            return query.To<T>().ToList();
         }
 
         public int GetCount()

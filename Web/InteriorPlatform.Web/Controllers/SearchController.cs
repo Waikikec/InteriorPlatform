@@ -23,22 +23,36 @@
 
         public IActionResult Index()
         {
-            var model = new SearchIndexViewModel
+            var assemblyModel = new SearchAssemblyModel
             {
-                CategoriesItems = this.categoriesService.GetCategories(),
-                StylesItems = this.stylesService.GetStyles(),
+                SearchViewModel = new SearchIndexViewModel
+                {
+                    CategoriesItems = this.categoriesService.GetCategories(),
+                    StylesItems = this.stylesService.GetStyles(),
+                },
             };
-            return this.View(model);
+
+            return this.View(assemblyModel);
         }
 
         [HttpPost]
-        public IActionResult Index(SearchIndexInputModel input)
+        public IActionResult Index(SearchAssemblyModel input)
         {
-            var inputModel = new SearchListModel
+            var assemblyModel = new SearchAssemblyModel
             {
-                Projects = this.projectsService.GetBySearch<SingleProjectViewModel>(input.Name, input.CategoryId, input.Styles),
+                SearchListModel = new SearchListModel
+                {
+                    Projects = this.projectsService
+                    .GetBySearch<SingleProjectViewModel>(input.SearchInputModel.Name, input.SearchInputModel.CategoryId, input.SearchInputModel.Styles),
+                },
+                SearchViewModel = new SearchIndexViewModel
+                {
+                    CategoriesItems = this.categoriesService.GetCategories(),
+                    StylesItems = this.stylesService.GetStyles(),
+                },
             };
-            return this.View(inputModel);
+
+            return this.View(assemblyModel);
         }
     }
 }

@@ -8,6 +8,6 @@
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<string> Styles { get; set; }
+        public IEnumerable<int> Styles { get; set; }
     }
 }

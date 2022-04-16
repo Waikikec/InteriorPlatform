@@ -5,5 +5,7 @@
         public SearchIndexViewModel SearchViewModel { get; set; }
 
         public SearchIndexInputModel SearchInputModel { get; set; }
+
+        public SearchListModel SearchListModel { get; set; }
     }
 }
