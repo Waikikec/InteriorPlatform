@@ -51,7 +51,7 @@
                 },
             };
 
-            await designersService.CreateInquireAsync(inquireAssembly, user);
+            await designersService.CreateInquireAsync(inquireAssembly);
 
             Assert.Equal(1, this.inquiresRepository.All().Count());
         }

@@ -24,7 +24,7 @@
         private readonly IProjectsService projectsService;
         private readonly EfDeletableEntityRepository<Project> projectsRepository;
         private readonly EfDeletableEntityRepository<Style> stylesRepository;
-        private readonly IRepository<UserProject> userProjectsRepository;
+        private readonly EfRepository<UserProject> userProjectsRepository;
 
         public ProjectsServiceTests()
         {
@@ -35,6 +35,7 @@
 
             this.projectsRepository = new EfDeletableEntityRepository<Project>(this.dbContext);
             this.stylesRepository = new EfDeletableEntityRepository<Style>(this.dbContext);
+            this.userProjectsRepository = new EfRepository<UserProject>(this.dbContext);
 
             this.projectsService = new ProjectsService(this.projectsRepository, this.stylesRepository, this.userProjectsRepository);
 
@@ -123,8 +124,9 @@
             await this.SeedDatabase();
 
             var result = this.projectsService.GetAll<SingleProjectViewModel>(1, 6);
+            //var result = this.projectsRepository.All().Count();
 
-            Assert.Single(result);
+            Assert.Equal(1, result.Count());
         }
 
         [Fact] // public T GetById<T>(int id)
@@ -177,6 +179,15 @@
             project.Images = new List<IFormFile> { file };
 
             await this.projectsService.CreateAsync(project, user, "wwwroot");
+
+            var userProjectLink = new UserProject
+            {
+                ProjectId = 1,
+                UserId = user.Id,
+            };
+            user.UserProjects.Add(userProjectLink);
+            await this.userProjectsRepository.AddAsync(userProjectLink);
+            await this.userProjectsRepository.SaveChangesAsync();
         }
 
         public void Dispose()
